@@ -14,7 +14,7 @@ public class CustomerController {
     @Autowired
 private ISimpleCustomerService iSimpleCustomerService;
 
-@GetMapping("/customer")
+@GetMapping("/")
     public  ModelAndView showList(){
         return new ModelAndView("/customer/list","customerList",iSimpleCustomerService.findAll());
     }

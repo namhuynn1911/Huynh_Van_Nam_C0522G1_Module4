@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 @Service
 public class SimpleCustomerService implements ISimpleCustomerService {
     private static List<Customer> customers;
@@ -21,6 +22,7 @@ public class SimpleCustomerService implements ISimpleCustomerService {
                 new Customer(autoIncreaseId++, "Dang Xuan Hoa", "hoa.dang@codegym.vn", "Da Nang")
         );
     }
+
     @Override
     public List<Customer> findAll() {
         return new ArrayList<>(customers);
@@ -28,51 +30,11 @@ public class SimpleCustomerService implements ISimpleCustomerService {
 
     @Override
     public Customer findOne(Long id) {
-        return null;
+        return customers.stream()
+                .filter(c -> c.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
-    @Override
-    public Customer save(Customer customer) {
-        return null;
-    }
-
-    @Override
-    public List<Customer> save(List<Customer> customers) {
-        return null;
-    }
-
-    @Override
-    public boolean exists(Long id) {
-        return false;
-    }
-
-    @Override
-    public List<Customer> findAll(List<Long> ids) {
-        return null;
-    }
-
-    @Override
-    public long count() {
-        return 0;
-    }
-
-    @Override
-    public void delete(Long id) {
-
-    }
-
-    @Override
-    public void delete(Customer customer) {
-
-    }
-
-    @Override
-    public void delete(List<Customer> customers) {
-
-    }
-
-    @Override
-    public void deleteAll() {
-
-    }
 }
+
