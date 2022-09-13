@@ -5,74 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbfa9226-7a35-4299-8223-9d2927722e82" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../01_application_sandwich/src/main/java/sandwich/controller/sandwichController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../01_application_sandwich/src/main/webapp/WEB-INF/applicationContext.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../01_application_sandwich/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../01_application_sandwich/src/main/webapp/WEB-INF/views/list.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../01_application_sandwich/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/7.1/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/7.1/dependencies-accessors/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/7.1/fileChanges/last-build.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/7.1/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/calculator/controller/CalculatorController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/calculator/service/ICalculatorService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/calculator/service/impl/CalculatorService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/libs/02_personal_computer-1.0-SNAPSHOT.war" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/tmp/war/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/calculator/controller/CalculatorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/calculator/service/ICalculatorService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/calculator/service/impl/CalculatorService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../practice/customer/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../practice/customer/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../practice/customer/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../practice/customer/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../practice/customer/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../practice/customer/.idea/modules/customer.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../practice/customer/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../practice/customer/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../practice/customer/src/main/java/customer/model/Customer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../practice/customer/src/main/java/customer/service/ICustomer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../practice/customer/src/main/java/customer/service/impl/Customer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../practice/customer/src/main/webapp/WEB-INF/applicationContext.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../practice/customer/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../practice/customer/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/java/mailbox/controller/EmailController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/java/mailbox/model/EmailBox.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/java/mailbox/service/IEmailBoxService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/java/mailbox/service/impl/EmailBoxService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/webapp/WEB-INF/applicationContext.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/webapp/WEB-INF/views/list.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../01_spring_overew/practice/02_quan_ly_khach_hang/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../01_spring_overew/practice/02_quan_ly_khach_hang/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../01_spring_overew/practice/02_quan_ly_khach_hang/src/main/java/customerManagement/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../01_spring_overew/practice/02_quan_ly_khach_hang/src/main/java/customerManagement/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../01_application_sandwich/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../01_application_sandwich/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../01_application_sandwich/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../01_application_sandwich/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../01_application_sandwich/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../01_application_sandwich/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../01_application_sandwich/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../01_application_sandwich/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../01_application_sandwich/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../01_application_sandwich/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../01_application_sandwich/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../01_application_sandwich/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../01_application_sandwich/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../01_application_sandwich/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../01_application_sandwich/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../01_application_sandwich/src/main/webapp/WEB-INF/views/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +77,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../01_spring_overew/practice/02_quan_ly_khach_hang" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -236,6 +185,7 @@
       <option name="presentableId" value="Default" />
       <updated>1662958044577</updated>
       <workItem from="1662958046965" duration="10562000" />
+      <workItem from="1663031806248" duration="3479000" />
     </task>
     <servers />
   </component>
@@ -252,5 +202,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

@@ -4,7 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6029858-3aeb-411d-8f54-16d59a66bb74" name="Changes" comment="" />
+    <list default="true" id="f6029858-3aeb-411d-8f54-16d59a66bb74" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/java/mailbox/controller/EmailController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/java/mailbox/model/EmailBox.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/java/mailbox/service/IEmailBoxService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/java/mailbox/service/impl/EmailBoxService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/webapp/WEB-INF/applicationContext.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/webapp/WEB-INF/views/list.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02_spring_controller/execise/02_personal_computer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../02_spring_controller/execise/02_personal_computer/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,7 +62,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../C0522G1-Huynh-Van-Nam-Module3/ss13_transaction/execsice/user_bt1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -153,6 +171,7 @@
       <workItem from="1662705119382" duration="4883000" />
       <workItem from="1662965007357" duration="140000" />
       <workItem from="1662974050418" duration="2941000" />
+      <workItem from="1663042603848" duration="1062000" />
     </task>
     <servers />
   </component>
