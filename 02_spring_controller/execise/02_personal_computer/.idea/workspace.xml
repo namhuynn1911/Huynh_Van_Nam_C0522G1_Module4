@@ -5,23 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbfa9226-7a35-4299-8223-9d2927722e82" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/java/mailbox/controller/EmailController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/java/mailbox/model/EmailBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/java/mailbox/service/IEmailBoxService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/java/mailbox/service/impl/EmailBoxService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/webapp/WEB-INF/applicationContext.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/webapp/WEB-INF/views/list.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../01_spring_overew/practice/02_quan_ly_khach_hang/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../01_spring_overew/practice/02_quan_ly_khach_hang/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../03_data_binding_form/exercise/01_email_function/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
