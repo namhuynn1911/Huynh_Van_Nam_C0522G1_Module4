@@ -19,7 +19,8 @@ public class CalculatorController {
     }
 
     @GetMapping("/calculator")
-    public ModelAndView resultCalculator(@RequestParam String operator, String firstNumber, String lastNumber) {
+    public ModelAndView resultCalculator(@RequestParam String operator, @RequestParam String firstNumber,
+                                         @RequestParam String lastNumber) {
         return new ModelAndView("index", "result", iCalculatorService.calculator(operator, firstNumber, lastNumber));
     }
 
