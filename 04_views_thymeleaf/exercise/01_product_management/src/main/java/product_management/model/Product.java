@@ -1,30 +1,28 @@
 package product_management.model;
 
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Product {
 
+    @Id
     private int id;
     private String name;
     private int price;
-    private String describe;
+    private String newDescribe;
     private String producer;
 
     public Product() {
     }
 
-    public Product(int id, String name, int price, String describe, String producer) {
+    public Product(int id, String name, int price, String newDescribe, String producer) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.describe = describe;
+        this.newDescribe = newDescribe;
         this.producer = producer;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     public int getId() {
@@ -43,15 +41,20 @@ public class Product {
         this.name = name;
     }
 
-
-
-
-    public String getDescribe() {
-        return describe;
+    public int getPrice() {
+        return price;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getNewDescribe() {
+        return newDescribe;
+    }
+
+    public void setNewDescribe(String newDescribe) {
+        this.newDescribe = newDescribe;
     }
 
     public String getProducer() {

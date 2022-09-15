@@ -1,5 +1,6 @@
 package product_management.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import product_management.model.Product;
 import product_management.repository.IProductRepository;
@@ -10,7 +11,9 @@ import java.util.List;
 
 @Service
 public class ProductService implements IProductService {
-    private IProductRepository iProductRepository = new ProductRepository();
+
+    @Autowired
+    private IProductRepository iProductRepository;
 
     @Override
     public List<Product> findAll() {
@@ -23,6 +26,16 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    public void remove(int id) {
+        iProductRepository.remove(id);
+    }
+
+    @Override
+    public List<Product> finByName(String name) {
+        return iProductRepository.finByName(name);
+    }
+
+    @Override
     public Product findById(int id) {
         return iProductRepository.findById(id);
     }
@@ -32,13 +45,13 @@ public class ProductService implements IProductService {
         iProductRepository.update(product);
     }
 
-    @Override
-    public void remove(int id) {
-        iProductRepository.remove(id);
-    }
-
-    @Override
-    public List<Product> finByName(String name) {
-        return iProductRepository.finByName(name);
-    }
+//    @Override
+//    public void remove(int id) {
+//        iProductRepository.remove(id);
+//    }
+//
+//    @Override
+//    public List<Product> finByName(String name) {
+//        return iProductRepository.finByName(name);
+//    }
 }

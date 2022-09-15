@@ -10,12 +10,11 @@ public interface IProductRepository {
 
     void save(Product product);
 
+    void remove(int id);
+
     Product findById(int id);
 
-
     void update(Product product);
-
-    void remove(int id);
 
     List<Product>finByName(String name);
 }

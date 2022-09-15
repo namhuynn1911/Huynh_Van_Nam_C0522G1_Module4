@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta charset="UTF-8">
+    <title>show product</title>
+</head>
+<body>
+<h1>Product List</h1>
+<p>
+    <a th:href="@{create}">
+        Add new Music Name
+    </a>
+</p>
+
+<!--<form class="d-flex" role="search" action="/search" method="get">-->
+<!--    <input  type="search" placeholder="Search" aria-label="Search" name="name">-->
+<!--    <button  type="submit" style="background: chartreuse">Search</button>-->
+<!--</form>-->
+<!--<form class="d-flex" role="search" action="/search" method="get">-->
+<!--    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="name">-->
+<!--    <button class="btn btn-outline-success" type="submit">Search</button>-->
+<!--</form>-->
+<h3 th:text="${success}" style="color: red"></h3>
+<h3 th:text="${messa}" style="color: blue"></h3>
+<h3 th:text="${masse1}" style="color: black"></h3>
+<p style="color: blue" th:text="${masse}"></p>
+<table id="products">
+    <thead>
+    <tr>
+        <th>Name Music</th>
+        <th>Singer Name</th>
+        <th>Kind Of Music</th>
+        <th>Link Music</th>
+        <th>Edit</th>
+        <th>Delete</th>
+<!--        <th>View</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row,rowStat : ${music}">
+        <td th:text="${row.musicName}"></td>
+        <td th:text="${row.singerName}"></td>
+        <td th:text="${row.kindOfMusic}"></td>
+        <td><a th:href="${row.linkMusic}" th:text="${row.linkMusic}"></a> </td>
+        <td><a th:href="@{/edit/__${row.id}__}"><i class="fa-solid fa-pen-to-square"></i></a></td>
+        <td><a th:href="@{/delete/__${row.id}__}"><i class="fa-solid fa-trash"></i></a></td>
+<!--        <td><a th:href="@{/view/__${row.id}__}"><i class="fa-sharp fa-solid fa-eye"></i></a></td>-->
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="/layout :: footer"></footer>
