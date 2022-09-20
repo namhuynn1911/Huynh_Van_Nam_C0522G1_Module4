@@ -16,7 +16,7 @@ public interface IBlogsRepository extends JpaRepository<Blogs,Integer> {
 
     Blogs findById(int id);
 
-    @Query(value = "select * from blogs where name_blog like %:keyword%",nativeQuery = true)
+    @Query(value = "select * from blogs where name_blog like %:keyword% ",nativeQuery = true)
     Page<Blogs> searchByName(@Param("keyword") String name, Pageable pageable);
 
     @Query(value = "select  * from blogs order by date_created DESC ",nativeQuery = true)

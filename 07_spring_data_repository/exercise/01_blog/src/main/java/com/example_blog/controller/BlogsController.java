@@ -75,6 +75,7 @@ public class BlogsController {
     @GetMapping("")
     public String search(@RequestParam(value = "name",defaultValue = "") String name,@PageableDefault(value = 3) Pageable pageable, Model model) {
         model.addAttribute("blogs", iBlogsService.findByName(name,pageable));
+        model.addAttribute("name",name);
         return "blog/list";
     }
 
