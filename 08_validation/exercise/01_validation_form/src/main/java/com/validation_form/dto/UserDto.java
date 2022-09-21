@@ -23,11 +23,11 @@ public class UserDto implements Validator {
     private String phone;
 
     @NotBlank(message = "không được để trống")
-    @Pattern(regexp = "^1[8-9]|[2-8]\\d|90$", message = "tuổi phải lớn hơn 18 và nhỏ hơn 90 tuổi")
+    @Min(value = 18,message = "Tuổi phải lớn hơn hoặc bằng 18 tuổi")
     private String age;
 
     @NotBlank(message = "không được để trống")
-    @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
+    @Email(message = "Hãy nhập một Email chính xác")
     private String email;
 
     public UserDto() {
