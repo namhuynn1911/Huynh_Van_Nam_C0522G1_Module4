@@ -1,7 +1,6 @@
 package com.validation_form.dto;
 
-import com.validation_form.model.User;
-import org.aspectj.bridge.IMessage;
+
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -10,7 +9,7 @@ import javax.validation.constraints.*;
 public class UserDto implements Validator {
     private int id;
 
-//    @NotBlank(message = "không được để trống")
+    @NotBlank(message = "không được để trống")
     @Size(min = 5, max = 45, message = "Định dạng phải lớn 5 và nhỏ hơn 45 kí tự")
     private String firstName;
 
