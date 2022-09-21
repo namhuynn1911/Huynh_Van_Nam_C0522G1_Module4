@@ -7,10 +7,10 @@
 <body>
 <h2>Add Product</h2>
 <p>
-    <a th:href="@{/}">Back to Product list</a>
+    <a th:href="@{/product}">Back to Product list</a>
 </p>
 <div id="form">
-    <form action="/save" th:object="${product}" method="post">
+    <form action="/product/save" th:object="${product}" method="post">
         <div>
         <input type="hidden"  th:field="*{id}"/>
         </div>

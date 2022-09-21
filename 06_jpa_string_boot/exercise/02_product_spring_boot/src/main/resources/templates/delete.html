@@ -7,10 +7,10 @@
 <body>
 <h2>Delete Product</h2>
 <p>
-    <a th:href="@{/}">Back to Product list</a>
+    <a th:href="@{/product}">Back to Product list</a>
 </p>
 <div id="form">
-    <form action="/delete" th:object="${product}"
+    <form action="/product/delete" th:object="${product}"
           method="POST" novalidate="novalidate">
         <input type="hidden" th:field="*{id}"/>
         <div>

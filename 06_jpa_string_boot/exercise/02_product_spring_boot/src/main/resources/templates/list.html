@@ -7,12 +7,12 @@
 <body style="background-image:url(https://www.ngoisaoso.vn/uploads/news/2015/03/19/Best-Website-Background-Images14.jpg)">
 <h1>Product List</h1>
 <p>
-    <a th:href="@{create}">
+    <a th:href="@{/product/create}">
         Add new product
     </a>
 </p>
 
-    <form class="d-flex" role="search" action="/search" method="get">
+    <form class="d-flex" role="search" action="" method="get">
         <input  type="search" placeholder="Search" aria-label="Search" name="name">
         <button  type="submit" style="background: chartreuse">Search</button>
     </form>
@@ -42,9 +42,9 @@
         <td th:text="${row.price+' VND'}"></td>
         <td th:text="${row.newDescribe}"></td>
         <td th:text="${row.producer}"></td>
-        <td><a th:href="@{/edit/__${row.id}__}"><i class="fa-solid fa-pen-to-square"></i></a></td>
-        <td><a th:href="@{/delete/__${row.id}__}"><i class="fa-solid fa-trash"></i></a></td>
-        <td><a th:href="@{/view/__${row.id}__}"><i class="fa-sharp fa-solid fa-eye"></i></a></td>
+        <td><a th:href="@{/product/edit/__${row.id}__}"><i class="fa-solid fa-pen-to-square"></i></a></td>
+        <td><a th:href="@{/product/delete/__${row.id}__}"><i class="fa-solid fa-trash"></i></a></td>
+        <td><a th:href="@{/product/view/__${row.id}__}"><i class="fa-sharp fa-solid fa-eye"></i></a></td>
     </tr>
     </tbody>
 </table>

@@ -65,5 +65,5 @@
     <a th:href="@{'/blogs'(page=${blogs.number + 1},name=${name})}" th:if="${blogs.hasNext()}"><i class="fa-solid fa-forward"></i></a>
 </div>
 <footer th:replace="blog/layout :: footer"></footer>
-
-</body></html>
+</body>
+</html>
