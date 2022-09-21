@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="blog/layout :: head">
+    <meta charset="UTF-8">
+    <title>show blogs</title>
+</head>
+<body style="background-image:url(https://www.ngoisaoso.vn/uploads/news/2015/03/19/Best-Website-Background-Images14.jpg)">
+<h1>Blogs List Title</h1>
+<!--<h2>-->
+<!--    <a th:href="@{/blogs/create}">-->
+<!--        Add new Blog-->
+<!--    </a>-->
+<!--</h2>-->
+<!--<form class="d-flex" role="search" action="" method="get">-->
+<!--    <input  type="search" placeholder="Search" aria-label="Search" name="name">-->
+<!--    <button  type="submit" style="background: chartreuse">Search</button>-->
+<!--</form>-->
+<!--<form class="d-flex" role="search" action="/search" method="get">-->
+<!--    <input  type="search" placeholder="Search" aria-label="Search" name="name">-->
+<!--    <button  type="submit" style="background: chartreuse">Search</button>-->
+<!--</form>-->
+<!--<form class="d-flex" role="search" action="/search" method="get">-->
+<!--    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="name">-->
+<!--    <button class="btn btn-outline-success" type="submit">Search</button>-->
+<!--</form>-->
+<!--<h3 th:text="${success}" style="color: red"></h3>-->
+<!--<h3 th:text="${messa}" style="color: blue"></h3>-->
+<!--<h3 th:text="${masseNew}" style="color: black"></h3>-->
+<!--<p style="color: blue" th:text="${masse}"></p>-->
+<table id="blogs">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Name Blog</th>
+        <th>Name Category</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row,rowStat : ${blogDto}">
+        <td th:text="${rowStat.count}"></td>
+        <td th:text="${row.nameBlog}"></td>
+        <td th:text="${row.nameCategory}"></td>
+<!--        <td th:text="${row.content}"></td>-->
+<!--        &lt;!&ndash;        <td th:if="${blog.category}" th:text="${blog.category.categoryName}"></td>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <td th:unless="${blog.category}">non</td>&ndash;&gt;-->
+<!--        <td th:text="${row.category.nameCategory}"></td>-->
+<!--        <td><a th:href="${row.linkBlog}" th:text="${row.linkBlog}"></a> </td>-->
+
+<!--        <td><a th:href="@{/blogs/edit/__${row.id}__}"><i class="fa-solid fa-pen-to-square"></i></a></td>-->
+<!--        <td><a th:href="@{/blogs/delete/__${row.id}__}"><i class="fa-solid fa-trash"></i></a></td>-->
+<!--        <td><a th:href="@{/blogs/view/__${row.id}__}"><i class="fa-sharp fa-solid fa-eye"></i></a></td>-->
+    </tr>
+    </tbody>
+</table>
+
+<!--<div>-->
+<!--    <a th:href="@{'/blogs'(page=${blogs.number - 1},name=${name})}" th:if="${blogs.hasPrevious()}"><i class="fa-sharp fa-solid fa-backward"></i></a>-->
+<!--    <span th:text="${blogs.number + 1}"></span>/<span th:text="${blogs.totalPages}"></span>-->
+<!--    <a th:href="@{'/blogs'(page=${blogs.number + 1},name=${name})}" th:if="${blogs.hasNext()}"><i class="fa-solid fa-forward"></i></a>-->
+<!--</div>-->
+<footer th:replace="blog/layout :: footer"></footer>
+</body>
+
+</html>

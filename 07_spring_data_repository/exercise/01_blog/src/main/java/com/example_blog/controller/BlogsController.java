@@ -78,5 +78,9 @@ public class BlogsController {
         model.addAttribute("name",name);
         return "blog/list";
     }
-
+@GetMapping("/title")
+    public String showTitel(Model model){
+        model.addAttribute("blogDto",iBlogsService.showTitle());
+        return "blog/listTitle";
+}
 }
