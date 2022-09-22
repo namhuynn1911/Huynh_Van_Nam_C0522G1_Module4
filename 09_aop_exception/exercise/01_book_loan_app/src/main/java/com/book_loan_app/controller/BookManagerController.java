@@ -38,7 +38,7 @@ public class BookManagerController {
         if (book.getAmount()<0){
             throw new Exception();
         }
-        redirectAttributes.addFlashAttribute("messa1", "Mượn Thành Công");
+        redirectAttributes.addFlashAttribute("messa1", "Borrowing books successfully !!!");
         return "redirect:/book/list";
     }
 
@@ -54,7 +54,7 @@ public class BookManagerController {
         if (book.getAmount()>book.getCount()){
             throw new Exception();
         }
-        redirectAttributes.addFlashAttribute("messa2", "Trả Thành Công");
+        redirectAttributes.addFlashAttribute("messa2", "Returned the book !!!");
         return "redirect:/book/list";
     }
 }
