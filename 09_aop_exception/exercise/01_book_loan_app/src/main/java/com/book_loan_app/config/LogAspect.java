@@ -14,20 +14,26 @@ import java.time.LocalDateTime;
 @Aspect
 public class LogAspect {
 
-    @Pointcut("execution(* com.book_loan_app.controller.BookManagerController.show*(..))")
-    public void allMethodPointCut() {
+
+
+    @Pointcut("execution(* com.book_loan_app.controller.BookManagerController.saveBorrowBook(..))")
+    public void borrowBookPointCut() {
     }
 
-    @Before("allMethodPointCut()")
-    public void beforeCallMethod(JoinPoint joinPoint) {
-        System.out.println("Start method name book: "
+    @AfterReturning("borrowBookPointCut()")
+    public void borrowBookMethod(JoinPoint joinPoint) {
+        System.out.println("mehtod name: "
                 + joinPoint.getSignature().getName()
-                + "time: " + LocalDateTime.now());
+                + " time: " + LocalDateTime.now());
     }
 
-    @AfterReturning("allMethodPointCut()")
-    public void afterThrowingCallMethod(JoinPoint joinPoint) {
-        System.out.println("End mehtod name: "
+    @Pointcut("execution(* com.book_loan_app.controller.BookManagerController.savePayBook(..))")
+    public void payBookPointCut() {
+    }
+
+    @AfterReturning("payBookPointCut()")
+    public void payBookMethod(JoinPoint joinPoint) {
+        System.out.println("mehtod name: "
                 + joinPoint.getSignature().getName()
                 + " time: " + LocalDateTime.now());
     }
