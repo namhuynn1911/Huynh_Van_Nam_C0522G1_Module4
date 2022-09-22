@@ -3,6 +3,7 @@ package com.example.case_study.dto;
 import com.example.case_study.model.CustomerType;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -19,8 +20,14 @@ public class CustomerDto {
     private String customerName;
     private String birthday;
     private int gender;
+
+    @Pattern(regexp = "\\d{10}",message = "CMND phải đúng định dạng 10 số")
     private String idCard;
+
+    @Pattern(regexp = "^((\\(\\+84\\-\\))|0)(90|91)[0-9]{7}$")
     private String phone;
+
+    @Email(message = "Định dạng Email sai, hãy nhập đúng Email !!!")
     private String email;
     private String address;
     private CustomerType customerType;

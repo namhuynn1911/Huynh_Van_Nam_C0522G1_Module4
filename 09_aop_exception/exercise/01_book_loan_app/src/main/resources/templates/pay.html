@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Pay Book</h1>
+<p>
+    <a th:href="@{/book/list}">Back to Book list</a>
+</p>
+<form th:action="@{/book/savePay}" th:object="${book}" method="post">
+    <div>
+        <input type="hidden" th:field="*{id}"/>
+    </div>
+    <div>
+        <label>Name</label>
+        <input type="text" th:field="*{name}"/>
+    </div>
+    <div>
+        <label>Amount</label>
+        <input type="text" th:field="*{amount}"/>
+    </div>
+    <button type="submit" value="pay">Pay</button>
+</form>
+</body>

@@ -26,10 +26,14 @@ public class CustomerController {
     private ICustomerTypeService iCustomerTypeService;
 
     @GetMapping("")
-    public String search(@RequestParam(value = "name" , defaultValue = "") String name,
+        public String search(@RequestParam(value = "name" , defaultValue = "") String name,
+                         @RequestParam(value = "phone" , defaultValue = "") String phone,
+                         @RequestParam(value = "address" , defaultValue = "") String address,
                          @PageableDefault(value = 3) Pageable pageable, Model model) {
-        model.addAttribute("customers", iCustomerService.findByName(name, pageable));
+        model.addAttribute("customers", iCustomerService.findByName(name,phone,address, pageable));
         model.addAttribute("name", name);
+        model.addAttribute("phone", name);
+        model.addAttribute("address", address);
         return "customer/list";
     }
 
@@ -52,5 +56,38 @@ public class CustomerController {
             redirectAttributes.addFlashAttribute("masseNew", "successfully added new !!");
             return "redirect:/customer";
         }
+    }
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable int id, Model model) {
+        model.addAttribute("customers", iCustomerService.findById(id));
+        model.addAttribute("customerTypes", iCustomerTypeService.findAll());
+        return "customer/edit";
+    }
+
+    @PostMapping("/update")
+    public String update(Customer customer, RedirectAttributes redirectAttributes) {
+        iCustomerService.update(customer);
+        redirectAttributes.addFlashAttribute("messa", "edit successfully!");
+        return "redirect:/customer";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable int id, Model model) {
+        model.addAttribute("customers", iCustomerService.findById(id));
+        model.addAttribute("customerTypes", iCustomerTypeService.findAll());
+        return "customer/delete";
+    }
+
+    @PostMapping("/delete")
+    public String delete(Customer customer, RedirectAttributes redirect) {
+        iCustomerService.remove(customer.getId());
+        redirect.addFlashAttribute("success", "Removed customer successfully!");
+        return "redirect:/customer";
+    }
+
+    @GetMapping("/view/{id}")
+    public String view(@PathVariable int id, Model model) {
+        model.addAttribute("customers", iCustomerService.findById(id));
+        return "customer/view";
     }
 }

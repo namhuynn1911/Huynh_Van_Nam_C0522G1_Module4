@@ -21,8 +21,10 @@
 <!--    </a>-->
 <!--</h2>-->
 <form class="d-flex" role="search" action="" method="get">
-    <input  type="search" placeholder="Search" aria-label="Search" name="name">
-    <button  type="submit" style="background: chartreuse">Search</button>
+    <input class="form-control e-2" style="margin: 8px" type="search" placeholder="Search by name" aria-label="Search" name="name">
+    <input class="form-control e-2" style="margin: 8px" type="search" placeholder="Search by phone" aria-label="Search" name="phone">
+    <input class="form-control e-2" style="margin: 8px" type="search" placeholder="Search by address" aria-label="Search" name="address">
+    <button class="btn btn-outline-success" type="submit" style="background: chartreuse">Search</button>
 </form>
 <!--<form class="d-flex" role="search" action="/search" method="get">-->
 <!--    <input  type="search" placeholder="Search" aria-label="Search" name="name">-->
@@ -40,11 +42,11 @@
     <thead>
     <tr>
         <th>Name</th>
-        <th>Birthday</th>
+<!--        <th>Birthday</th>-->
         <th>Gender</th>
         <th>ID Card</th>
-        <th>Phone </th>
-        <th>Email</th>
+<!--        <th>Phone </th>-->
+<!--        <th>Email</th>-->
         <th>Address</th>
         <th>Customer Type</th>
         <th>Edit</th>
@@ -54,15 +56,15 @@
     <tbody>
     <tr th:each="row,rowStat : ${customers}">
         <td><a th:href="@{/customer/view/__${row.id}__}" th:text="${row.customerName}"></a></td>
-        <td th:text="${row.birthday}"></td>
+<!--        <td th:text="${row.birthday}"></td>-->
         <td th:switch="${row.gender}">
             <span th:case="0">Male</span>
             <span th:case="1">Female</span>
             <span th:case="*">LGBT</span>
         </td>
         <td th:text="${row.idCard}"></td>
-        <td th:text="${row.phone}"></td>
-        <td th:text="${row.email}"></td>
+<!--        <td th:text="${row.phone}"></td>-->
+<!--        <td th:text="${row.email}"></td>-->
         <td th:text="${row.address}"></td>
 
         <td th:if="${row.customerType}" th:text="${row.customerType.customerTypeName}"></td>

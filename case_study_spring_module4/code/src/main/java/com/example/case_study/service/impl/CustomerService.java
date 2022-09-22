@@ -15,8 +15,8 @@ public class CustomerService implements ICustomerService {
     private ICustomerRepository iCustomerRepository;
 
     @Override
-    public Page<Customer> findByName(String name, Pageable pageable) {
-        return iCustomerRepository.searchByName(name,pageable);
+    public Page<Customer> findByName(String name,String phone,String address, Pageable pageable) {
+        return iCustomerRepository.searchByName(name,phone,address, pageable);
     }
 
     @Override
@@ -28,4 +28,15 @@ public class CustomerService implements ICustomerService {
     public void save(Customer customer) {
         iCustomerRepository.save(customer);
     }
+
+    @Override
+    public void update(Customer customer) {
+        iCustomerRepository.save(customer);
+    }
+
+    @Override
+    public void remove(int id) {
+        iCustomerRepository.delete(findById(id));
+    }
+
 }
