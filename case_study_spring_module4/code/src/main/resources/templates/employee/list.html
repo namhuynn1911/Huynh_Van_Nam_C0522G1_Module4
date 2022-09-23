@@ -1,10 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>show employee</title>
+    <style>
+        body{
+            background-attachment: fixed;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-image: url("https://www.nawpic.com/media/2020/pink-laptop-nawpic-12.jpg");
+        }
+    </style>
 </head>
 <body>
-$END$
+<div th:replace="layout_new :: head"></div>
+<h1>Employee List</h1>
+<!--<h2>-->
+<!--    <a th:href="@{/customer/create}">-->
+<!--        Add new Customer-->
+<!--    </a>-->
+<!--</h2>-->
+<form class="d-flex" role="search" action="" method="get">
+    <input class="form-control e-2" style="margin: 8px" type="search" placeholder="Search by name" aria-label="Search" name="name">
+    <input class="form-control e-2" style="margin: 8px" type="search" placeholder="Search by phone" aria-label="Search" name="phone">
+    <input class="form-control e-2" style="margin: 8px" type="search" placeholder="Search by address" aria-label="Search" name="idCard">
+    <button class="btn btn-outline-success" type="submit" style="background: chartreuse">Search</button>
+</form>
+<!--<form class="d-flex" role="search" action="/search" method="get">-->
+<!--    <input  type="search" placeholder="Search" aria-label="Search" name="name">-->
+<!--    <button  type="submit" style="background: chartreuse">Search</button>-->
+<!--</form>-->
+<!--<form class="d-flex" role="search" action="/search" method="get">-->
+<!--    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="name">-->
+<!--    <button class="btn btn-outline-success" type="submit">Search</button>-->
+<!--</form>-->
+<h3 th:text="${success}" style="color: red"></h3>
+<h3 th:text="${messa}" style="color: blue"></h3>
+<h3 th:text="${masseNew}" style="color: black"></h3>
+<p style="color: blue" th:text="${masse}"></p>
+<table class="table table-bordered" id="furama">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <!--        <th>Birthday</th>-->
+        <th>ID Card</th>
+        <th>Phone</th>
+        <!--        <th>Phone </th>-->
+        <!--        <th>Email</th>-->
+        <th>Education Name</th>
+        <th>Position Name</th>
+        <th>Division Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row,rowStat : ${employees}">
+        <td><a th:href="@{/employee/view/__${row.id}__}" th:text="${row.employeeName}"></a></td>
+        <!--        <td th:text="${row.birthday}"></td>-->
+        <td th:text="${row.idCard}"></td>
+        <td th:text="${row.phone}"></td>
+        <!--        <td th:text="${row.phone}"></td>-->
+        <!--        <td th:text="${row.email}"></td>-->
+        <td th:if="${row.educationDegree}" th:text="${row.educationDegree.educationDegreeName}"></td>
+        <td th:unless="${row.educationDegree}"></td>
+
+        <td th:if="${row.position}" th:text="${row.position.positionName}"></td>
+        <td th:unless="${row.position}"></td>
+
+        <td th:if="${row.division}" th:text="${row.division.divisionName}"></td>
+        <td th:unless="${row.division}"></td>
+
+        <td><a th:href="@{/employee/edit/__${row.id}__}"><i class="fa-solid fa-pen-to-square"></i></a></td>
+        <td><a th:href="@{/employee/delete/__${row.id}__}"><i class="fa-solid fa-trash"></i></a></td>
+    </tr>
+    </tbody>
+</table>
+
+<div>
+    <a th:href="@{'/employee'(page=${employees.number - 1},name=${name})}" th:if="${employees.hasPrevious()}"><i class="fa-sharp fa-solid fa-backward"></i></a>
+    <span th:text="${employees.number + 1}"></span>/<span th:text="${employees.totalPages}"></span>
+    <a th:href="@{'/employee'(page=${employees.number + 1},name=${name})}" th:if="${employees.hasNext()}"><i class="fa-solid fa-forward"></i></a>
+</div>
+
+<!--<footer th:replace="layout_new :: footer"></footer>-->
+
 </body>
 </html>

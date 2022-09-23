@@ -1,7 +1,7 @@
 package com.example.case_study.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
+
 
 @Entity
 public class Customer {
