@@ -28,10 +28,10 @@ private int count=0;
     }
 
     @Pointcut("execution(* com.book_loan_app.controller.BookManagerController.save*(..))")
-    public void BorrowPayBookPointCut() {
+    public void borrowPayBookPointCut() {
     }
 
-    @AfterReturning("BorrowPayBookPointCut()")
+    @AfterReturning("borrowPayBookPointCut()")
     public void payBookMethod(JoinPoint joinPoint) {
         System.out.println("mehtod name: "
                 + joinPoint.getSignature().getName()
