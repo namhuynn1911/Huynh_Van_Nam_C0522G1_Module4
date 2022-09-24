@@ -48,7 +48,7 @@ public class ProductController {
     }
 
     @GetMapping("/add/{id}")
-    public String addCard(@PathVariable int id, @SessionAttribute("product") CartDto cartDto) {
+    public String addCart(@PathVariable int id, @SessionAttribute("product") CartDto cartDto) {
         Optional<Product> productOptional = iProductService.findById(id);
         if (productOptional.isPresent()) {
             ProductDto productDto = new ProductDto();
