@@ -1,47 +1,22 @@
-package com.example_blog.model;
+package com.example_blog.dto;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.example_blog.model.Category;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-@Entity
-public class Blogs {
+public class BlogsDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String creatorBlog;
     private String nameBlog;
-    @Column(columnDefinition = "Date")
     private String dateCreated;
     private String content;
     private String linkBlog;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
-    @JsonBackReference
-//    @JsonManagedReference
     private Category category;
 
-    public Blogs() {
-    }
-
-    public Blogs(int id, String creatorBlog, String nameBlog, String dateCreated, String content, String linkBlog) {
-        this.id = id;
-        this.creatorBlog = creatorBlog;
-        this.nameBlog = nameBlog;
-        this.dateCreated = dateCreated;
-        this.content = content;
-        this.linkBlog = linkBlog;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
+    public BlogsDto() {
     }
 
     public int getId() {
@@ -90,5 +65,13 @@ public class Blogs {
 
     public void setLinkBlog(String linkBlog) {
         this.linkBlog = linkBlog;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

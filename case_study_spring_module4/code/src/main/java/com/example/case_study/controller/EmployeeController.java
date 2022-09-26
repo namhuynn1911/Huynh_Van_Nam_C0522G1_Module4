@@ -1,6 +1,5 @@
 package com.example.case_study.controller;
 
-import com.example.case_study.dto.CustomerDto;
 import com.example.case_study.dto.EmployeeDto;
 import com.example.case_study.model.Customer;
 import com.example.case_study.model.Employee;
@@ -56,9 +55,12 @@ public class EmployeeController {
         return "employee/create";
     }
     @PostMapping("/save")
-    public String save(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String save(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult, RedirectAttributes redirectAttributes,Model model) {
 
         if (bindingResult.hasFieldErrors()) {
+            model.addAttribute("educationDegrees", iEducationDegreeService.findAll());
+            model.addAttribute("positions", iPositionService.findAll());
+            model.addAttribute("divisions", iDivisionService.findAll());
             return "employee/create";
         } else {
             Employee employee = new Employee();
@@ -67,5 +69,37 @@ public class EmployeeController {
             redirectAttributes.addFlashAttribute("masseNew", "successfully added new !!");
             return "redirect:/employee";
         }
+    }
+
+    @GetMapping("/update/{id}")
+    public String edit(@PathVariable int id, Model model) {
+        model.addAttribute("employees", iEmployeeService.findById(id));
+        model.addAttribute("educationDegrees", iEducationDegreeService.findAll());
+        model.addAttribute("positions", iPositionService.findAll());
+        model.addAttribute("divisions", iDivisionService.findAll());
+        return "employee/update";
+    }
+
+    @PostMapping("/update")
+    public String update(Employee employee, RedirectAttributes redirectAttributes) {
+        iEmployeeService.update(employee);
+        redirectAttributes.addFlashAttribute("messa", "edit successfully!");
+        return "redirect:/employee";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable int id, Model model) {
+        model.addAttribute("employees", iEmployeeService.findById(id));
+        model.addAttribute("educationDegrees",iEducationDegreeService.findAll());
+        model.addAttribute("positions",iPositionService.findAll());
+        model.addAttribute("divisions",iDivisionService.findAll());
+        return "employee/delete";
+    }
+
+    @PostMapping("/delete")
+    public String delete(Employee employee, RedirectAttributes redirect) {
+        iEmployeeService.remove(employee.getId());
+        redirect.addFlashAttribute("success", "Removed customer successfully!");
+        return "redirect:/employee";
     }
 }

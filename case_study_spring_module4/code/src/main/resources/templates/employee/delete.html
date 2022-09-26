@@ -7,11 +7,8 @@
 <body id="backGroundBody">
 <div th:replace="layout_new :: head"></div>
 <div id="form">
-    <h2>Add Employee</h2>
-    <p>
-        <a th:href="@{/employee}">Back to Employee list</a>
-    </p>
-    <form th:action="@{/employee/save}" th:object="${employeeDto}" method="post">
+    <h2>Delete Customer</h2>
+    <form th:action="@{/employee/delete}" th:object="${employees}" method="post">
         <div>
             <input type="hidden" th:field="*{id}"/>
         </div>
@@ -23,7 +20,7 @@
         </div>
         <div>
             <label>Birthday</label>
-            <input type="date" th:field="*{birthday}"/>
+            <input type="text" th:field="*{birthday}"/>
         </div>
 <!--        <div>-->
 <!--            <label>Gender</label>-->
@@ -34,50 +31,43 @@
         <div>
             <label>ID Card</label>
             <input type="text" th:field="*{idCard}"/>
-            <p style="color: red" th:if="${#fields.hasErrors('idCard')}"
-               th:errors="*{idCard}"></p>
         </div>
         <div>
             <label>Phone</label>
             <input type="text" th:field="*{phone}"/>
-            <p style="color: red" th:if="${#fields.hasErrors('phone')}"
-               th:errors="*{phone}"></p>
         </div>
         <div>
             <label>Email</label>
             <input type="email" th:field="*{email}"/>
-            <p style="color: red" th:if="${#fields.hasErrors('email')}"
-               th:errors="*{email}"></p>
         </div>
         <div>
             <label>Salary</label>
             <input type="number" th:field="*{salary}"/>
         </div>
         <div>
-            <label>Education Name: </label>
+            <label>EducationDegree Name</label>
             <select th:field="*{educationDegree}">
-                <option th:each="education: ${educationDegrees}" th:text="${education.educationDegreeName}"
-                        th:value="${education.educationDegreeId}"></option>
+                <option th:each="items: ${educationDegrees}" th:text="${items.educationDegreeName}"
+                        th:value="${items.educationDegreeId}"></option>
             </select>
         </div>
         <div>
-            <label>Position Name: </label>
-            <select th:field="*{position}">
-                <option th:each="items: ${positions}" th:text="${items.positionName}"
-                        th:value="${items.positionId}"></option>
-            </select>
-        </div>
-
-        <div>Division Name: </label>
+        <label>Position Name</label>
+        <select th:field="*{position}">
+            <option th:each="positionNew: ${positions}" th:text="${positionNew.positionName}"
+                    th:value="${positionNew.positionId}"></option>
+        </select>
+    </div>
+        <div>
+            <label>Division</label>
             <select th:field="*{division}">
-                <option th:each="divi: ${divisions}" th:text="${divi.divisionName}"
-                        th:value="${divi.divisionId}"></option>
+                <option th:each="divisionNew: ${divisions}" th:text="${divisionNew.divisionName}"
+                        th:value="${divisionNew.divisionId}"></option>
             </select>
         </div>
-
-        <input type="submit" value="Save"/>
+        <input type="submit" value="Delete"/>
     </form>
 </div>
-<!--<footer th:replace="layout_new :: footer"></footer>-->
 </body>
+
 </html>

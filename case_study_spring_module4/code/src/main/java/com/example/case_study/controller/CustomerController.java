@@ -15,6 +15,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
@@ -45,9 +47,10 @@ public class CustomerController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute @Validated CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String save(@ModelAttribute @Validated CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes,Model model) {
 
         if (bindingResult.hasFieldErrors()) {
+            model.addAttribute("customerTypes", iCustomerTypeService.findAll());
             return "customer/create";
         } else {
             Customer customer = new Customer();

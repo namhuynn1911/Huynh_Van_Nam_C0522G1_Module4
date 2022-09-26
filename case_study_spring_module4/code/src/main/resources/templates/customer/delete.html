@@ -3,22 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Thêm mới</title>
-    <style>
-        body{
-            background-attachment: fixed;
-            background-size: 100%;
-            background-repeat: no-repeat;
-            background-image: url("https://www.nawpic.com/media/2020/pink-laptop-nawpic-12.jpg");
-        }
-    </style>
 </head>
-<body >
+<body id="backGroundBody">
 <div th:replace="layout_new :: head"></div>
 <div id="form">
     <h2>Delete Customer</h2>
-    <p>
-        <a th:href="@{/customer}">Back to Customer list</a>
-    </p>
     <form th:action="@{/customer/delete}" th:object="${customers}" method="post">
         <div>
             <input type="hidden" th:field="*{id}"/>
