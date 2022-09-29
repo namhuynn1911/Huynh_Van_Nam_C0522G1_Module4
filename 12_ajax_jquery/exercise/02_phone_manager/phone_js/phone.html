@@ -12,79 +12,10 @@
             crossorigin="anonymous"></script>
 
     <script src="jquery-3.6.1.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#tbodyList").empty();
-            $.ajax({
-                url: "http://localhost:8080/phone/list",
-                type: "GET",
-                dataType: "json",
-                success: function (data) {
-                    console.log(data);
-                    let tr = [];
-                    for (let i = 0; i < data.length; i++) {
-                        tr.push("<tr>");
-                        tr.push("<td>" + data[i].id + "</td>");
-                        tr.push("<td>" + data[i].producer + "</td>");
-                        tr.push("<td>" + data[i].model + "</td>");
-                        tr.push("<td>" + data[i].price + "</td>");
-                        tr.push("</tr>");
-                    }
-                    $("#showPhone").append(tr.join(""));
-                }
 
-            })
-        })
-        function addNewSmartPhone() {
-//lay du lieu
-            let producer = $('#producer').val();
-            let model = $('#model').val();
-            let price = $('#price').val();
-            let newSmartphone = {
-                producer: producer,
-                model: model,
-                price: price
-            };
-// goi ajax
-            $.ajax({
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                type: "POST",
-                data: JSON.stringify(newSmartphone),
-//tên API
-                url: "/phone/save",
-//xử lý khi thành công
-                success: console.log('success')
-
-            });
-//chặn sự kiện mặc định của thẻ
-            event.preventDefault();
-        }
-    </script>
 </head>
 <body>
-<form id="add-smartphone">
-    <table>
-        <tr>
-            <td>Producer:</td>
-            <td><input type="text" id="producer" placeholder="producer"></td>
-        </tr>
-        <tr>
-            <td>Model:</td>
-            <td><input type="text" id="model" placeholder="model"></td>
-        </tr>
-        <tr>
-            <td>Price:</td>
-            <td><input type="text" id="price" placeholder="price"></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Add" onclick="addNewSmartPhone()"></td>
-        </tr>
-    </table>
-</form>
+
 
 
 <h1>Phone List</h1>
@@ -103,5 +34,97 @@
     </tr>
     </tbody>
 </table>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
+    Create
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div>
+                        <input type="text" id="textProducer">
+                    </div>
+                    <div>
+                        <input type="text" id="textModel">
+                    </div>
+                    <div>
+                        <input type="number" id="textPrice">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnCreate">Create</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<script>-->
+<!--    $('#exampleModal').on('show.bs.modal', event => {-->
+<!--        var button = $(event.relatedTarget);-->
+<!--        var modal = $(this);-->
+<!--        // Use above variables to manipulate the DOM-->
+
+<!--    });-->
+<!--</script>-->
+<script src="js/bootstrap.js"></script>
+<script>
+    $(document).ready(function () {
+        function init() {
+            setTimeout(function () {
+                $("#tbodyList").empty();
+                $.ajax({
+                    url: "http://localhost:8080/phone/list",
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        // console.log(data);
+                        let tr = [];
+                        for (let i = 0; i < data.length; i++) {
+                            tr.push("<tr>");
+                            tr.push("<td>" + data[i].id + "</td>");
+                            tr.push("<td>" + data[i].producer + "</td>");
+                            tr.push("<td>" + data[i].model + "</td>");
+                            tr.push("<td>" + data[i].price + "</td>");
+                            tr.push("</tr>");
+                        }
+                        $("#showPhone").append(tr.join(""));
+                    }
+
+                })
+            },2000)
+        }
+        $("#btnCreate").click(function () {
+            let producer = $('#textProducer').val();
+            let model = $('#textModel').val();
+            let price = $('#textPrice').val();
+
+            $.ajax({
+                url:"http://localhost:8080/phone/save",
+                type: "POST",
+                contentType:'application/json; charset=utf-8',
+                data:JSON.stringify({'producer': producer,'model': model,'price': price}),
+                success:function (){
+                    $('#modelId').modal('hide');
+                    $("#tbodyList").empty();
+                    $("#tbodyList").append("loading....")
+                    init();
+                }
+            })
+        })
+        init();
+    })
+</script>
 </body>
 </html>

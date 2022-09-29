@@ -17,7 +17,7 @@ public class ApiPhoneController {
     @Autowired
     private IPhoneService iPhoneService;
 
-    @PostMapping("/save")
+    @PostMapping
     public ResponseEntity<Phone> createSmartphone(@RequestBody Phone phone) {
         return new ResponseEntity<>(iPhoneService.save(phone), HttpStatus.CREATED);
     }
