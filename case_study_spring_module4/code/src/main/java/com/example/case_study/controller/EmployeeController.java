@@ -90,10 +90,10 @@ public class EmployeeController {
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable int id, Model model) {
         model.addAttribute("employees", iEmployeeService.findById(id));
-        model.addAttribute("educationDegrees",iEducationDegreeService.findAll());
-        model.addAttribute("positions",iPositionService.findAll());
-        model.addAttribute("divisions",iDivisionService.findAll());
-        return "employee/delete";
+//        model.addAttribute("educationDegrees",iEducationDegreeService.findAll());
+//        model.addAttribute("positions",iPositionService.findAll());
+//        model.addAttribute("divisions",iDivisionService.findAll());
+        return "employee/list";
     }
 
     @PostMapping("/delete")

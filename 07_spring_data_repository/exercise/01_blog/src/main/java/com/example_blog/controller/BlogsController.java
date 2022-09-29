@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/blogs")
+@CrossOrigin("*")
 public class BlogsController {
 
     @Autowired
@@ -29,7 +30,7 @@ public class BlogsController {
 
     @GetMapping("/create")
     public String create(Model model) {
-        model.addAttribute("categoryList",iCategoryService.findAll());
+        model.addAttribute("categoryList", iCategoryService.findAll());
         model.addAttribute("blogs", new Blogs());
         return "blog/create";
     }
@@ -72,15 +73,17 @@ public class BlogsController {
         model.addAttribute("blogs", iBlogsService.findById(id));
         return "blog/view";
     }
+
     @GetMapping("")
-    public String search(@RequestParam(value = "name",defaultValue = "") String name,@PageableDefault(value = 3) Pageable pageable, Model model) {
-        model.addAttribute("blogs", iBlogsService.findByName(name,pageable));
-        model.addAttribute("name",name);
+    public String search(@RequestParam(value = "name", defaultValue = "") String name, @PageableDefault(value = 3) Pageable pageable, Model model) {
+        model.addAttribute("blogs", iBlogsService.findByName(name, pageable));
+        model.addAttribute("name", name);
         return "blog/list";
     }
-@GetMapping("/title")
-    public String showTitel(Model model){
-        model.addAttribute("blogDto",iBlogsService.showTitle());
+
+    @GetMapping("/title")
+    public String showTitel(Model model) {
+        model.addAttribute("blogDto", iBlogsService.showTitle());
         return "blog/listTitle";
-}
+    }
 }

@@ -1,11 +1,9 @@
-package com.example_blog.service.impl;
+package com.blog_12.service.impl;
 
 
-import com.example_blog.model.Blogs;
-import com.example_blog.model.IBlogDto;
-import com.example_blog.repository.IBlogsRepository;
-
-import com.example_blog.service.IBlogsService;
+import com.blog_12.model.Blogs;
+import com.blog_12.repository.IBlogsRepository;
+import com.blog_12.service.IBlogsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +16,7 @@ public class BlogsService implements IBlogsService {
 
     @Autowired
     private IBlogsRepository iBlogsRepository;
+
 
 
     @Override
@@ -46,25 +45,19 @@ public class BlogsService implements IBlogsService {
     }
 
 
+
     @Override
     public Page<Blogs> findAll(Pageable pageable) {
         return iBlogsRepository.findAll(pageable);
     }
 
     @Override
-    public Page<Blogs> findByName(String name, Pageable pageable) {
+    public Page<Blogs> findByName(String name,Pageable pageable) {
         return iBlogsRepository.searchByName(name,pageable);
     }
 
-    @Override
-    public List<Blogs> findName(String name) {
-        return iBlogsRepository.findName(name);
-
-
-    }
-
-    @Override
-    public List<IBlogDto> showTitle() {
-        return iBlogsRepository.showTitle();
-    }
+//    @Override
+//    public List<IBlogDto> showTitle() {
+//        return iBlogsRepository.showTitle();
+//    }
 }

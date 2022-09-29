@@ -13,9 +13,12 @@
 <!--    </a>-->
 <!--</h2>-->
 <form class="d-flex" role="search" action="" method="get">
-    <input class="form-control e-2" style="margin: 8px" type="search" placeholder="Search by name" aria-label="Search" name="name">
-    <input class="form-control e-2" style="margin: 8px" type="search" placeholder="Search by phone" aria-label="Search" name="phone">
-    <input class="form-control e-2" style="margin: 8px" type="search" placeholder="Search by Id Card" aria-label="Search" name="idCard">
+    <input class="form-control e-2" style="margin: 8px" type="search" placeholder="Search by name" aria-label="Search"
+           name="name">
+    <input class="form-control e-2" style="margin: 8px" type="search" placeholder="Search by phone" aria-label="Search"
+           name="phone">
+    <input class="form-control e-2" style="margin: 8px" type="search" placeholder="Search by Id Card"
+           aria-label="Search" name="idCard">
     <button class="btn btn-outline-success" type="submit" style="background: chartreuse">Search</button>
 </form>
 <!--<form class="d-flex" role="search" action="/search" method="get">-->
@@ -70,12 +73,19 @@
 </table>
 
 <div>
-    <a th:href="@{'/employee'(page=${employees.number - 1},name=${name})}" th:if="${employees.hasPrevious()}"><i class="fa-sharp fa-solid fa-backward"></i></a>
+    <a th:href="@{'/employee'(page=${employees.number - 1},name=${name})}" th:if="${employees.hasPrevious()}"><i
+            class="fa-sharp fa-solid fa-backward"></i></a>
     <span th:text="${employees.number + 1}"></span>/<span th:text="${employees.totalPages}"></span>
-    <a th:href="@{'/employee'(page=${employees.number + 1},name=${name})}" th:if="${employees.hasNext()}"><i class="fa-solid fa-forward"></i></a>
+    <a th:href="@{'/employee'(page=${employees.number + 1},name=${name})}" th:if="${employees.hasNext()}"><i
+            class="fa-solid fa-forward"></i></a>
 </div>
 
 <!--<footer th:replace="layout_new :: footer"></footer>-->
-
+<!--<script>-->
+<!--    function modalDelete(id, name) {-->
+<!--        document.getElementById("idDelete").value = id;-->
+<!--        document.getElementById("nameDelete").innerHTML = name;-->
+<!--    }-->
+<!--</script>-->
 </body>
 </html>
