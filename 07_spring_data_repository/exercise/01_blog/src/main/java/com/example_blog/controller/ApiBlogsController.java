@@ -17,7 +17,7 @@ public class ApiBlogsController {
     @Autowired
     private IBlogsService iBlogsService;
 
-    @GetMapping("/v1")
+    @GetMapping("/list")
     public ResponseEntity<List<Blogs>> showBlog() {
         List<Blogs> blogsList = iBlogsService.findAll();
         if (blogsList.isEmpty()) {
@@ -27,7 +27,7 @@ public class ApiBlogsController {
     }
 
 
-    @GetMapping("v1/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Blogs> showView(@PathVariable int id) {
         Blogs blogs = iBlogsService.findById(id);
         if (blogs == null) {
@@ -36,7 +36,7 @@ public class ApiBlogsController {
         return new ResponseEntity<>(blogs, HttpStatus.OK);
     }
 
-    @GetMapping("/v1")
+    @GetMapping("/search")
     public ResponseEntity<List<Blogs>> showBlogByName(@RequestParam(value = "name") String name) {
         List<Blogs> blogsList = iBlogsService.findName(name);
         if (blogsList.isEmpty()) {

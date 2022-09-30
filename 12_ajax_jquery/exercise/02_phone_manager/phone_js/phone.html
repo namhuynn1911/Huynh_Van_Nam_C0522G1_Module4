@@ -158,6 +158,68 @@
 <script src="js/bootstrap.js"></script>
 <script>
     $(document).ready(function () {
+        let x = 3;
+        loadList();
+
+        function loadList() {
+            $("tbody").empty();
+            $.ajax({
+                url: "http://localhost:8080/api/blog/v1",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data)
+                    let tr = [];
+                    for (let i = 0; i < x; i++) {
+                        tr.push("<tr>");
+                        tr.push("<td>" + data[i].creatorName + "</td>")
+                        tr.push("<td>" + data[i].nameBlog + "</td>")
+                        tr.push("<td>" + data[i].category.name + "</td>")
+                        tr.push("<td>" + data[i].dateCreated + "</td>")
+                        tr.push("</tr>");
+                        if (x > data.length) {
+                            x = data.length;
+                        }
+                    }
+                    $("table").append(tr.join(""));
+                }
+
+            })
+        }
+
+        $("#search").click(function () {
+            $("tbody").empty();
+            let value = $("#name").val();
+            $.ajax({
+                url: "http://localhost:8080/api/blog/v1/search?name=" + value,
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data)
+                    let tr = [];
+                    for (let i = 0; i < data.length; i++) {
+                        tr.push("<tr>");
+                        tr.push("<td>" + data[i].creatorName + "</td>")
+                        tr.push("<td>" + data[i].nameBlog + "</td>")
+                        tr.push("<td>" + data[i].category_id + "</td>")
+                        tr.push("<td>" + data[i].dateCreated + "</td>")
+                        tr.push("</tr>");
+                    }
+                    $("table").append(tr.join(""));
+                }
+
+            })
+        })
+
+        $("#showMore").click(function (data) {
+            x += 1;
+            loadList();
+        })
+    })
+
+</script>
+<script>
+    $(document).ready(function () {
         function init() {
                 $("#tbodyList").empty();
                 $.ajax({
