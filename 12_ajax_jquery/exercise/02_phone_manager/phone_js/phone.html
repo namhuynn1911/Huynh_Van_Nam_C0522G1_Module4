@@ -3,19 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-            crossorigin="anonymous"></script>
 
     <script src="jquery-3.6.1.min.js"></script>
 
 </head>
 <body>
-
 
 
 <h1>Phone List</h1>
@@ -52,12 +47,15 @@
             <div class="modal-body">
                 <div class="container-fluid">
                     <div>
+                        <label>Producer</label>
                         <input type="text" id="textProducer">
                     </div>
                     <div>
+                        <label>Model</label>
                         <input type="text" id="textModel">
                     </div>
                     <div>
+                        <label>Price</label>
                         <input type="number" id="textPrice">
                     </div>
                 </div>
@@ -70,14 +68,20 @@
     </div>
 </div>
 
-<!--<script>-->
-<!--    $('#exampleModal').on('show.bs.modal', event => {-->
-<!--        var button = $(event.relatedTarget);-->
-<!--        var modal = $(this);-->
-<!--        // Use above variables to manipulate the DOM-->
+<!--<div>-->
+<!--    <input type="hidden" id="id" value="">-->
+<!--   <label>Producer:</label>-->
+<!--    <input type="text" id="producerEdit" placeholder="producer" value="">-->
+<!--    <br>-->
+<!--    <label>Model:</label>-->
+<!--    <input type="text" id="modelEdit" placeholder="model" value="">-->
+<!--    <br>-->
+<!--    <label>Price:</label>-->
+<!--    <td><input type="text" id="priceEdit" placeholder="price" value=""></td>-->
+<!--    <br>-->
+<!--    <button onclick="editPhone()">Edit</button>-->
+<!--</div>-->
 
-<!--    });-->
-<!--</script>-->
 <script src="js/bootstrap.js"></script>
 <script>
     $(document).ready(function () {
@@ -103,19 +107,20 @@
                     }
 
                 })
-            },2000)
+            }, 2000)
         }
+
         $("#btnCreate").click(function () {
             let producer = $('#textProducer').val();
             let model = $('#textModel').val();
             let price = $('#textPrice').val();
 
             $.ajax({
-                url:"http://localhost:8080/phone/save",
+                url: "http://localhost:8080/phone/save",
                 type: "POST",
-                contentType:'application/json; charset=utf-8',
-                data:JSON.stringify({'producer': producer,'model': model,'price': price}),
-                success:function (){
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({'producer': producer, 'model': model, 'price': price}),
+                success: function () {
                     $('#modelId').modal('hide');
                     $("#tbodyList").empty();
                     $("#tbodyList").append("loading....")
@@ -125,6 +130,74 @@
         })
         init();
     })
+
+    // function findById(id) {
+    //     $.ajax({
+    //         url: "http://localhost:8080/phone/findById/" + id,
+    //         type: "GET",
+    //         dataType: "json",
+    //         success: function (data) {
+    //             document.getElementById("id").value = (data.id);
+    //             document.getElementById("producerEdit").value = (data.producer);
+    //             document.getElementById("modelEdit").value = (data.model);
+    //             document.getElementById("priceEdit").value = (data.price);
+    //         }
+    //     })
+    // }
+    //
+    // function editPhone() {
+    //     //lay du lieu
+    //     let id = $("#id").val();
+    //     let producer = $('#producerEdit').val();
+    //     let model = $('#modelEdit').val();
+    //     let price = $('#priceEdit').val();
+    //     let newSmartphone = {
+    //         id: id,
+    //         producer: producer,
+    //         model: model,
+    //         price: price
+    //     }
+    //
+    //     $(".table tbody").empty();
+    //     $.ajax({
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json'
+    //         },
+    //         type: "PUT",
+    //         data: JSON.stringify(newSmartphone),
+    //         //tên API
+    //         url: "http://localhost:8080/phone/update/" + id,
+    //         success: function () {
+    //             $.ajax({
+    //                 url: "http://localhost:8080/phone/list",
+    //                 type: "GET",
+    //                 dataType: "json",
+    //                 success: function (data) {
+    //                     let str = [];
+    //                     for (let i = 0; i < data.length; i++) {
+    //                         str.push("<tr>")
+    //                         str.push("<td>" + data[i].id + "</td>")
+    //                         str.push("<td>" + data[i].model + "</td>")
+    //                         str.push("<td>" + data[i].price + "</td>")
+    //                         str.push("<td>" + data[i].producer + "</td>")
+    //                         str.push(`<td><button onclick="findById(` + data[i].id + `)">Edit</button></td>`)
+    //                         str.push("</tr>")
+    //                     }
+    //                     $("table").append((str.join("")));
+    //                 }
+    //             })
+    //         }
+    //
+    //     })
+    //
+    // }
 </script>
+<!--&lt;!&ndash;<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"&ndash;&gt;-->
+<!--        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"-->
+<!--        crossorigin="anonymous"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
 </body>
 </html>

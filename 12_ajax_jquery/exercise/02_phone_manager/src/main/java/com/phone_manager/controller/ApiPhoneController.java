@@ -17,10 +17,11 @@ public class ApiPhoneController {
     @Autowired
     private IPhoneService iPhoneService;
 
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity<Phone> createSmartphone(@RequestBody Phone phone) {
         return new ResponseEntity<>(iPhoneService.save(phone), HttpStatus.CREATED);
     }
+
     @GetMapping("/list")
     public ResponseEntity<List<Phone>> showPhone() {
         List<Phone> blogsList = iPhoneService.findAll();
@@ -28,5 +29,25 @@ public class ApiPhoneController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(blogsList, HttpStatus.OK);
+    }
+
+    @GetMapping("findById/{id}")
+    public ResponseEntity<Phone> findById(@PathVariable int id) {
+        return new ResponseEntity<>(iPhoneService.findById(id), HttpStatus.OK);
+    }
+
+    @PutMapping("update/{id}")
+    public ResponseEntity<Phone> updatePhone(@PathVariable int id,
+                                             @RequestBody Phone phone) {
+        Phone newPhone = iPhoneService.findById(id);
+        if (newPhone == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        newPhone.setModel(phone.getModel());
+        newPhone.setPrice(phone.getPrice());
+        newPhone.setProducer(phone.getProducer());
+
+        iPhoneService.save(newPhone);
+        return new ResponseEntity<>(newPhone, HttpStatus.OK);
     }
 }
