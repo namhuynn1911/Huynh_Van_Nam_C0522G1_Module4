@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PhoneService implements IPhoneService {
@@ -20,7 +21,7 @@ public class PhoneService implements IPhoneService {
     }
 
     @Override
-    public Phone findById(int id) {
+    public Optional<Phone> findById(int id) {
         return iPhoneRepository.findById(id);
     }
 
@@ -31,6 +32,6 @@ public class PhoneService implements IPhoneService {
 
     @Override
     public void remove(int id) {
-        iPhoneRepository.delete(findById(id));
+        iPhoneRepository.delete(findById(id).get());
     }
 }

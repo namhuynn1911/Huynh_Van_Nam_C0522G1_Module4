@@ -31,15 +31,24 @@ public class ApiPhoneController {
         return new ResponseEntity<>(blogsList, HttpStatus.OK);
     }
 
-    @GetMapping("findById/{id}")
-    public ResponseEntity<Phone> findById(@PathVariable int id) {
-        return new ResponseEntity<>(iPhoneService.findById(id), HttpStatus.OK);
+//    @GetMapping("findById/{id}")
+//    public ResponseEntity<Phone> findById(@PathVariable int id) {
+//        return new ResponseEntity<>(iPhoneService.findById(id).get(), HttpStatus.OK);
+//    }
+
+    @GetMapping("update/{id}")
+    public ResponseEntity<Phone> update(@PathVariable int id) {
+        Phone phone = iPhoneService.findById(id).get();
+        if (phone == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(phone, HttpStatus.OK);
     }
 
     @PutMapping("update/{id}")
     public ResponseEntity<Phone> updatePhone(@PathVariable int id,
                                              @RequestBody Phone phone) {
-        Phone newPhone = iPhoneService.findById(id);
+        Phone newPhone = iPhoneService.findById(id).get();
         if (newPhone == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

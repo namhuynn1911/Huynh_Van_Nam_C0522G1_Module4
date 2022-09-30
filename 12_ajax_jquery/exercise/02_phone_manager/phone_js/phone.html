@@ -21,6 +21,7 @@
         <th>Producer</th>
         <th>Model</th>
         <th>DPrice</th>
+        <th>Update</th>
     </tr>
     </thead>
     <tbody id="tbodyList">
@@ -68,19 +69,47 @@
     </div>
 </div>
 
-<!--<div>-->
-<!--    <input type="hidden" id="id" value="">-->
-<!--   <label>Producer:</label>-->
-<!--    <input type="text" id="producerEdit" placeholder="producer" value="">-->
-<!--    <br>-->
-<!--    <label>Model:</label>-->
-<!--    <input type="text" id="modelEdit" placeholder="model" value="">-->
-<!--    <br>-->
-<!--    <label>Price:</label>-->
-<!--    <td><input type="text" id="priceEdit" placeholder="price" value=""></td>-->
-<!--    <br>-->
-<!--    <button onclick="editPhone()">Edit</button>-->
-<!--</div>-->
+<!--//update phone-->
+<button hidden id="showModalUpdate" type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+        data-target="#updateModal">
+    Update
+</button>
+
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Smartphone</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input id="idUpdate" hidden>
+                <table id="smartphoneInfoTable" class="table table-striped">
+
+                    <tr>
+                        <td>Model:</td>
+                        <td><input type="text" id="modelUpdate" placeholder="model" value=""></td>
+                    </tr>
+                    <tr>
+                        <td>Price:</td>
+                        <td><input type="text" id="priceUpdate" placeholder="price" value=""></td>
+                    </tr>
+                    <tr>
+                        <td>Producer:</td>
+                        <td><input type="text" id="producerUpdate" placeholder="producer" value=""></td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="saveUpdate"  type="button" class="btn btn-warning" data-dismiss="modal">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="js/bootstrap.js"></script>
 <script>
@@ -101,6 +130,7 @@
                             tr.push("<td>" + data[i].producer + "</td>");
                             tr.push("<td>" + data[i].model + "</td>");
                             tr.push("<td>" + data[i].price + "</td>");
+                            tr.push("<td class='update'>" + "<span hidden >" + data[i].id + "</span>" + "<button >Update</button>" + "</td>");
                             tr.push("</tr>");
                         }
                         $("#showPhone").append(tr.join(""));
@@ -129,69 +159,47 @@
             })
         })
         init();
+
+        // function update
+        $(document).on('click', '.update', function () {
+            let id = $(this).find(":first-child").text();
+            $.ajax({
+                url: "http://localhost:8080/phone/update/" + id,
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    document.getElementById("idUpdate").value = (data.id);
+                    document.getElementById("producerUpdate").value = (data.producer);
+                    document.getElementById("modelUpdate").value = (data.model);
+                    document.getElementById("priceUpdate").value = (data.price);
+                    $('#showModalUpdate').click();
+                }
+            })
+        })
+
+        //update
+        $("#saveUpdate").click(function () {
+            let id = $("#idUpdate").val();
+            let producer = $("#producerUpdate").val();
+            let model = $("#modelUpdate").val();
+            let price = $("#priceUpdate").val();
+            $.ajax({
+                url: "http://localhost:8080/phone/update/" + id,
+                type: "PUT",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({'producer': producer, 'model': model, 'price': price}),
+                success: function () {
+                    $('#showModalUpdate').modal('hide')
+                    init();
+
+                }
+            })
+        })
     })
 
-    // function findById(id) {
-    //     $.ajax({
-    //         url: "http://localhost:8080/phone/findById/" + id,
-    //         type: "GET",
-    //         dataType: "json",
-    //         success: function (data) {
-    //             document.getElementById("id").value = (data.id);
-    //             document.getElementById("producerEdit").value = (data.producer);
-    //             document.getElementById("modelEdit").value = (data.model);
-    //             document.getElementById("priceEdit").value = (data.price);
-    //         }
-    //     })
-    // }
-    //
-    // function editPhone() {
-    //     //lay du lieu
-    //     let id = $("#id").val();
-    //     let producer = $('#producerEdit').val();
-    //     let model = $('#modelEdit').val();
-    //     let price = $('#priceEdit').val();
-    //     let newSmartphone = {
-    //         id: id,
-    //         producer: producer,
-    //         model: model,
-    //         price: price
-    //     }
-    //
-    //     $(".table tbody").empty();
-    //     $.ajax({
-    //         headers: {
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json'
-    //         },
-    //         type: "PUT",
-    //         data: JSON.stringify(newSmartphone),
-    //         //tên API
-    //         url: "http://localhost:8080/phone/update/" + id,
-    //         success: function () {
-    //             $.ajax({
-    //                 url: "http://localhost:8080/phone/list",
-    //                 type: "GET",
-    //                 dataType: "json",
-    //                 success: function (data) {
-    //                     let str = [];
-    //                     for (let i = 0; i < data.length; i++) {
-    //                         str.push("<tr>")
-    //                         str.push("<td>" + data[i].id + "</td>")
-    //                         str.push("<td>" + data[i].model + "</td>")
-    //                         str.push("<td>" + data[i].price + "</td>")
-    //                         str.push("<td>" + data[i].producer + "</td>")
-    //                         str.push(`<td><button onclick="findById(` + data[i].id + `)">Edit</button></td>`)
-    //                         str.push("</tr>")
-    //                     }
-    //                     $("table").append((str.join("")));
-    //                 }
-    //             })
-    //         }
-    //
-    //     })
-    //
-    // }
+
+
 </script>
 <!--&lt;!&ndash;<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"&ndash;&gt;-->
 <!--        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"-->

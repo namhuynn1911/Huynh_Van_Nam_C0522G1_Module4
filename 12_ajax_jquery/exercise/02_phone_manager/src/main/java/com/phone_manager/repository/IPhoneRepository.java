@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface IPhoneRepository extends JpaRepository<Phone,Integer> {
-    Phone findById(int id);
+    Optional<Phone> findById(int id);
 }
