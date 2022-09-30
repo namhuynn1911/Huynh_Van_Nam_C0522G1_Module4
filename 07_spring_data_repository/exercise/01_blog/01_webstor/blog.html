@@ -37,73 +37,20 @@
 </table>
 <script src="jquery-3.6.1.min.js"></script>
 <script>
-    $(document).ready(function () {
-        let next = 4;
-            $("tbody").empty();
-            $.ajax({
-                url: "http://localhost:8080/api/blog/list",
-                type: "GET",
-                dataType: "json",
-                success: function (data) {
-                    console.log(data);
-                    let tr = [];
-                    for (let i = 0; i < next; i++) {
-                        tr.push("<tr>");
-                        tr.push("<td>" + data[i].id + "</td>");
-                        tr.push("<td>" + data[i].creatorBlog + "</td>");
-                        tr.push("<td>" + data[i].nameBlog + "</td>");
-                        tr.push("<td>" + data[i].dateCreated + "</td>");
-                        tr.push("<td>" + data[i].content + "</td>");
-                        tr.push("<td>" + data[i].linkBlog + "</td>");
-                        tr.push("<td>" + data[i].category.nameCategory + "</td>");
-                        tr.push("</tr>");
-                    }
-                    $("table").append(tr.join(""));
-                }
-
-            })
-        $("#showMore").click(function () {
-            $.ajax({
-                url: "http://localhost:8080/api/blog/list",
-                type: "GET",
-                dataType: "json",
-                success: function (data) {
-                    console.log(data);
-                    $("tbody").empty();
-                    let tr = [];
-                    next += 2;
-                    for (let i = 0; i < next; i++) {
-                        tr.push("<tr>");
-                        tr.push("<td>" + data[i].id + "</td>");
-                        tr.push("<td>" + data[i].creatorBlog + "</td>");
-                        tr.push("<td>" + data[i].nameBlog + "</td>");
-                        tr.push("<td>" + data[i].dateCreated + "</td>");
-                        tr.push("<td>" + data[i].content + "</td>");
-                        tr.push("<td>" + data[i].linkBlog + "</td>");
-                        tr.push("<td>" + data[i].category.nameCategory + "</td>");
-                        tr.push("</tr>");
-                        if (next > data.length) {
-                            next = data.length;
-                        }
-                    }
-                    $("table").append(tr.join(""));
-                }
-
-            })
-        })
-    })
-
-    $("#search").click(function () {
+    function showBlog(value, page) {
         $("tbody").empty();
-        let value = $('#name').val();
         $.ajax({
-            url: "http://localhost:8080/api/blog/search?name=" + value,
+            url: "http://localhost:8080/api/blog/v1/?name=" + value,
             type: "GET",
             dataType: "json",
             success: function (data) {
                 // console.log(data);
                 let tr = [];
-                for (let i = 0; i < data.length; i++) {
+                let num = 3 * page
+                if (data.length < num) {
+                    num = data.length;
+                }
+                for (let i = 0; i < num; i++) {
                     tr.push("<tr>");
                     tr.push("<td>" + data[i].id + "</td>");
                     tr.push("<td>" + data[i].creatorBlog + "</td>");
@@ -117,6 +64,23 @@
                 $("table").append(tr.join(""));
             }
 
+        })
+    }
+
+    $(document).ready(function () {
+        let newNum = 1;
+        let search = "";
+        showBlog(search, newNum);
+
+        $("#showMore").click(function () {
+            newNum++;
+            showBlog(search, newNum);
+        })
+
+        $("#search").click(function () {
+            let value = $('#name').val();
+            newNum = 1;
+            showBlog(value, newNum);
         })
     })
 
