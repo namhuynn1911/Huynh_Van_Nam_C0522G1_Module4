@@ -39,7 +39,6 @@
 <script>
     $(document).ready(function () {
         let next = 4;
-        setTimeout(function () {
             $("tbody").empty();
             $.ajax({
                 url: "http://localhost:8080/api/blog/list",
@@ -63,7 +62,6 @@
                 }
 
             })
-        }, 2000)
         $("#showMore").click(function () {
             $.ajax({
                 url: "http://localhost:8080/api/blog/list",

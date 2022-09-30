@@ -59,4 +59,24 @@ public class ApiPhoneController {
         iPhoneService.save(newPhone);
         return new ResponseEntity<>(newPhone, HttpStatus.OK);
     }
+
+    @GetMapping("delete/{id}")
+    public ResponseEntity<Phone> showInfoDelete(@PathVariable int id) {
+        Phone smartphone = iPhoneService.findById(id).get();
+        if (smartphone == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(smartphone, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity deleteSmartphone(@PathVariable int id) {
+        Phone smartphone = iPhoneService.findById(id).get();
+        if (smartphone == null) {
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        } else {
+            iPhoneService.remove(id);
+            return new ResponseEntity(smartphone, HttpStatus.OK);
+        }
+    }
 }
