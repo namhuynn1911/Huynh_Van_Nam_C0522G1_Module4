@@ -43,7 +43,7 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public void remove(int id) {
-        iCustomerRepository.delete(findById(id));
+        iCustomerRepository.deleteById(id);
     }
 
 }

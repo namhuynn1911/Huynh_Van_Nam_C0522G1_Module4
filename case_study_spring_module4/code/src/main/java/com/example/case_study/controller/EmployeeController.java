@@ -87,19 +87,19 @@ public class EmployeeController {
         return "redirect:/employee";
     }
 
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable int id, Model model) {
-        model.addAttribute("employees", iEmployeeService.findById(id));
+//    @GetMapping("/delete/{id}")
+//    public String delete(@PathVariable int id, Model model) {
+//        model.addAttribute("employees", iEmployeeService.findById(id));
 //        model.addAttribute("educationDegrees",iEducationDegreeService.findAll());
 //        model.addAttribute("positions",iPositionService.findAll());
 //        model.addAttribute("divisions",iDivisionService.findAll());
-        return "employee/list";
-    }
+//        return "employee/delete";
+//    }
 
     @PostMapping("/delete")
-    public String delete(Employee employee, RedirectAttributes redirect) {
-        iEmployeeService.remove(employee.getId());
-        redirect.addFlashAttribute("success", "Removed customer successfully!");
+    public String delete(@RequestParam(value = "idDelete")int id, RedirectAttributes redirect) {
+        iEmployeeService.remove(id);
+        redirect.addFlashAttribute("success", "Removed Employee successfully!");
         return "redirect:/employee";
     }
 }

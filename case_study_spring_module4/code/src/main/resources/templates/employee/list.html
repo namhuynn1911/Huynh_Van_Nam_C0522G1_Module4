@@ -13,11 +13,11 @@
 <!--    </a>-->
 <!--</h2>-->
 <form class="d-flex" role="search" action="" method="get">
-    <input class="form-control e-2" style="margin: 8px" type="search" placeholder="Search by name" aria-label="Search"
+    <input class="form-control e-2" type="search" placeholder="Search by name" aria-label="Search"
            name="name">
-    <input class="form-control e-2" style="margin: 8px" type="search" placeholder="Search by phone" aria-label="Search"
+    <input class="form-control e-2"  type="search" placeholder="Search by phone" aria-label="Search"
            name="phone">
-    <input class="form-control e-2" style="margin: 8px" type="search" placeholder="Search by Id Card"
+    <input class="form-control e-2"  type="search" placeholder="Search by Id Card"
            aria-label="Search" name="idCard">
     <button class="btn btn-outline-success" type="submit" style="background: chartreuse">Search</button>
 </form>
@@ -67,7 +67,15 @@
         <td th:unless="${row.division}"></td>
 
         <td><a th:href="@{/employee/update/__${row.id}__}"><i class="fa-solid fa-pen-to-square"></i></a></td>
-        <td><a th:href="@{/employee/delete/__${row.id}__}"><i class="fa-solid fa-trash"></i></a></td>
+        <td>
+            <button th:attr="onclick=|employeeDelete('${row.id}', '${row.employeeName}')|"
+                    class="btn btn-danger btn-outline-secondary btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#deleteCustomer">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+<!--            <a th:href="@{/employee/delete/__${row.id}__}"><i class="fa-solid fa-trash"></i></a>-->
+        </td>
+
     </tr>
     </tbody>
 </table>
@@ -81,11 +89,37 @@
 </div>
 
 <!--<footer th:replace="layout_new :: footer"></footer>-->
-<!--<script>-->
-<!--    function modalDelete(id, name) {-->
-<!--        document.getElementById("idDelete").value = id;-->
-<!--        document.getElementById("nameDelete").innerHTML = name;-->
-<!--    }-->
-<!--</script>-->
+
+<div class="modal fade" id="deleteCustomer" tabindex="-1" aria-labelledby="exampleModalLabel1"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel1">Bạn có chắc chắn muốn xóa?</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form th:action="@{/employee/delete}" method="POST">
+                <div class="modal-body">
+                    <span class="h6">Khách hàng:</span><strong id="nameDelete" class="text-danger ps-2"></strong>
+                    <input type="hidden" name="idDelete" id="idDelete" readonly/>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-danger" value="delete">Xóa</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function employeeDelete(id, name) {
+        document.getElementById("idDelete").value = id;
+        document.getElementById("nameDelete").innerText = name;
+        debugger
+    }
+</script>
 </body>
 </html>

@@ -55,6 +55,7 @@ public class CustomerController {
         } else {
             Customer customer = new Customer();
             BeanUtils.copyProperties(customerDto, customer);
+
             iCustomerService.save(customer);
             redirectAttributes.addFlashAttribute("masseNew", "successfully added new !!");
             return "redirect:/customer";
@@ -74,16 +75,16 @@ public class CustomerController {
         return "redirect:/customer";
     }
 
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable int id, Model model) {
-        model.addAttribute("customers", iCustomerService.findById(id));
-        model.addAttribute("customerTypes", iCustomerTypeService.findAll());
-        return "customer/delete";
-    }
+//    @GetMapping("/delete/{id}")
+//    public String delete(@PathVariable int id, Model model) {
+//        model.addAttribute("customers", iCustomerService.findById(id));
+//        model.addAttribute("customerTypes", iCustomerTypeService.findAll());
+//        return "customer/delete";
+//    }
 
-    @PostMapping("/delete")
-    public String delete(Customer customer, RedirectAttributes redirect) {
-        iCustomerService.remove(customer.getId());
+    @GetMapping("/delete")
+    public String delete(@RequestParam(value = "idDelete")int id, RedirectAttributes redirect) {
+        iCustomerService.remove(id);
         redirect.addFlashAttribute("success", "Removed customer successfully!");
         return "redirect:/customer";
     }

@@ -14,6 +14,7 @@ public class Employee {
     private String phone;
     private String email;
     private double salary;
+    private boolean isDelete;
 
     @ManyToOne
     @JoinColumn(name = "education_degree_id",referencedColumnName ="educationDegreeId")
@@ -31,7 +32,7 @@ public class Employee {
     }
 
     public Employee(int id, String employeeName, String birthday, String idCard, String phone, String email,
-                    double salary, EducationDegree educationDegree, Position position, Division division) {
+                    double salary, boolean isDelete, EducationDegree educationDegree, Position position, Division division) {
         this.id = id;
         this.employeeName = employeeName;
         this.birthday = birthday;
@@ -39,9 +40,18 @@ public class Employee {
         this.phone = phone;
         this.email = email;
         this.salary = salary;
+        this.isDelete = isDelete;
         this.educationDegree = educationDegree;
         this.position = position;
         this.division = division;
+    }
+
+    public boolean isDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        isDelete = delete;
     }
 
     public Division getDivision() {
