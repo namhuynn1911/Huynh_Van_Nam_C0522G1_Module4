@@ -12,12 +12,13 @@
         <a th:href="@{/facility}">Back to Employee list</a>
     </p>
     <form th:action="@{/facility/save}" th:object="${facilityDto}" method="post">
-        <div>
-            <input type="hidden" th:field="*{id}"/>
-        </div>
+<!--        <div>-->
+<!--            <input type="hidden" th:field="*{id}"/>-->
+<!--        </div>-->
         <div>
             <label>Facility Name</label>
-            <select th:field="*{facilityType}" >
+            <select th:field="*{facilityType}" onchange="changeForm(this)">
+                <option th:value="${''}">Facility Type</option>
                 <option th:each="item: ${facilityTypes}" th:text="${item.name}"
                         th:value="${item.id}"></option>
             </select>
@@ -44,34 +45,78 @@
             <p style="color: red" th:if="${#fields.hasErrors('maxPeople')}"
                th:errors="*{maxPeople}"></p>
         </div>
-        <div>
-            <label>Standar Room</label>
-            <input type="text" th:field="*{standardRoom}"/>
-            <p style="color: red" th:if="${#fields.hasErrors('standardRoom')}"
-               th:errors="*{standardRoom}"></p>
-        </div>
-        <div>
-            <label>Pool Area</label>
-            <input type="text" th:field="*{poolArea}"/>
-        </div>
-        <div>
-            <label>Number Of Floor</label>
-            <input type="text" th:field="*{numberOfFloors}"/>
-        </div>
-        <div>
-            <label>Facility Free</label>
-            <input type="text" th:field="*{facilityFree}"/>
-        </div>
         <div>Rent Name: </label>
             <select th:field="*{rentType}">
+                <option th:value="${''}">Rent Type</option>
                 <option th:each="rent: ${rentTypes}" th:text="${rent.name}"
                         th:value="${rent.id}"></option>
             </select>
         </div>
 
+        <div id="standardRoom">
+            <label>Standard Room</label>
+            <input type="text" th:field="*{standardRoom}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('standardRoom')}"
+               th:errors="*{standardRoom}"></p>
+        </div>
+        <div id="poolArea">
+            <label>Pool Area</label>
+            <input type="text" th:field="*{poolArea}"/>
+        </div>
+        <div id="description">
+            <label>Description</label>
+            <input type="text" th:field="*{descriptionOtherConvenience}"/>
+        </div>
+        <div id="numberOfFloor">
+            <label>Number Of Floor</label>
+            <input type="text" th:field="*{numberOfFloors}"/>
+        </div>
+        <div id="facilityFree">
+            <label>Facility Free</label>
+            <input type="text" th:field="*{facilityFree}"/>
+        </div>
         <input type="submit" value="Save"/>
     </form>
 </div>
+
+<script>
+    function changeForm(type) {
+        let selectForm = type.value;
+        switch (selectForm) {
+            case "1":
+                document.getElementById("standardRoom").style.display = "block";
+                document.getElementById("description").style.display = "block";
+                document.getElementById("poolArea").style.display = "block";
+                document.getElementById("numberOfFloor").style.display = "block";
+                document.getElementById("facilityFree").style.display = "none";
+                break;
+            case "2":
+                document.getElementById("standardRoom").style.display = "block";
+                document.getElementById("description").style.display = "block";
+                document.getElementById("poolArea").style.display = "none";
+                document.getElementById("numberOfFloor").style.display = "block";
+                document.getElementById("facilityFree").style.display = "none";
+                break;
+            case "3":
+                document.getElementById("standardRoom").style.display = "none";
+                document.getElementById("description").style.display = "none";
+                document.getElementById("poolArea").style.display = "none";
+                document.getElementById("numberOfFloor").style.display = "none";
+                document.getElementById("facilityFree").style.display = "block";
+                break;
+            default:
+                document.getElementById("standardRoom").style.display = "none";
+                document.getElementById("description").style.display = "none";
+                document.getElementById("poolArea").style.display = "none";
+                document.getElementById("numberOfFloor").style.display = "none";
+                document.getElementById("facilityFree").style.display = "none";
+                break;
+        }
+
+    }
+</script>
+</body>
+
 <!--<footer th:replace="layout_new :: footer"></footer>-->
 </body>
 </html>

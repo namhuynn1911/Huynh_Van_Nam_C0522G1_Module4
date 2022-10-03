@@ -59,7 +59,7 @@ public class FacilityController {
             BeanUtils.copyProperties(facilityDto, facility);
 
             iFacilityService.save(facility);
-            redirectAttributes.addFlashAttribute("masseNew", "successfully added new !!");
+            redirectAttributes.addFlashAttribute("success", "successfully added new !!");
             return "redirect:/facility";
         }
 
@@ -74,7 +74,7 @@ public class FacilityController {
         model.addAttribute("facility", iFacilityService.findById(id));
         model.addAttribute("facilityTypes", iFacilityTypeService.findAll());
         model.addAttribute("rentTypes", iRentTypeService.findAll());
-        return "/facility/edit";
+        return "/facility/update";
     }
 
     @PostMapping("/update")
@@ -82,7 +82,7 @@ public class FacilityController {
 //        Facility facility = new Facility();
 //        BeanUtils.copyProperties(facilityDto, facility);
         iFacilityService.update(facility);
-        redirectAttributes.addFlashAttribute("messa", "edit successfully!");
+        redirectAttributes.addFlashAttribute("success", "edit successfully!");
         return "redirect:/facility";
     }
 

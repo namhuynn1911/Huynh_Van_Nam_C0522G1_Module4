@@ -8,6 +8,10 @@
 <div th:replace="layout_new :: head"></div>
 <div id="form">
     <h2>Update Employee</h2>
+    <p>
+        <a th:href="@{/employee}">Back to employee list</a>
+    </p>
+
     <form th:action="@{/employee/update}" th:object="${employees}" method="post">
         <div>
             <input type="hidden" th:field="*{id}"/>

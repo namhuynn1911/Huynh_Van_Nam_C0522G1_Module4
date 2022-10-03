@@ -17,18 +17,8 @@
            name="name">
     <button class="btn btn-outline-success" type="submit" style="background: chartreuse">Search</button>
 </form>
-<!--<form class="d-flex" role="search" action="/search" method="get">-->
-<!--    <input  type="search" placeholder="Search" aria-label="Search" name="name">-->
-<!--    <button  type="submit" style="background: chartreuse">Search</button>-->
-<!--</form>-->
-<!--<form class="d-flex" role="search" action="/search" method="get">-->
-<!--    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="name">-->
-<!--    <button class="btn btn-outline-success" type="submit">Search</button>-->
-<!--</form>-->
-<h3 th:text="${success}" style="color: red"></h3>
-<h3 th:text="${messa}" style="color: blue"></h3>
-<h3 th:text="${masseNew}" style="color: black"></h3>
-<p style="color: blue" th:text="${masse}"></p>
+
+<h3 th:text="${success}" style="color: blue"></h3>
 <table class="table table-bordered" id="furama">
     <thead>
     <tr>
@@ -58,7 +48,7 @@
         <td th:if="${row.rentType}" th:text="${row.rentType.name}"></td>
         <td th:unless="${row.rentType}"></td>
 
-        <td><a th:href="@{/facility/update/__${row.id}__}"><i class="fa-solid fa-pen-to-square"></i></a></td>
+        <td><a th:href="@{/facility/edit/__${row.id}__}"><i class="fa-solid fa-pen-to-square"></i></a></td>
         <td>
             <button th:attr="onclick=|facilityDelete('${row.id}', '${row.name}')|"
                     class="btn btn-danger btn-outline-secondary btn-sm" data-bs-toggle="modal"
@@ -91,7 +81,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form th:action="@{/facility/delete}" method="POST">
+            <form th:action="@{/facility/delete}" method="GET">
                 <div class="modal-body">
                     <span class="h6">Khách hàng:</span><strong id="nameDelete" class="text-danger ps-2"></strong>
                     <input type="hidden" name="idDelete" id="idDelete" readonly/>

@@ -3,24 +3,25 @@ package com.example.case_study.model;
 import javax.persistence.*;
 import java.util.Set;
 
+
 @Entity
 public class Facility {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String name;
     private String area;
     private String cost;
     private String maxPeople;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "rentType_id",referencedColumnName = "id")
+    @JoinColumn(name = "rent_type_id",referencedColumnName = "id")
     private RentType rentType;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="facilityType_id",referencedColumnName = "id")
+    @JoinColumn(name="facility_type_id",referencedColumnName = "id")
     private FacilityType facilityType;
+
 
     private String standardRoom;
     private String descriptionOtherConvenience;
@@ -29,27 +30,21 @@ public class Facility {
     private String facilityFree;
     private boolean isDelete;
 
+    @OneToMany(mappedBy = "facility",cascade = CascadeType.ALL)
+    private Set<Contract> contractFacility;
+
 //    @OneToMany(mappedBy = "facility")
 //    private Set<Contract> contractSet;
 
     public Facility() {
     }
 
-    public Facility(int id, String name, String area, String cost, String maxPeople, RentType rentType,
-                    FacilityType facilityType, String standardRoom, String descriptionOtherConvenience, String poolArea, String numberOfFloors, String facilityFree, boolean isDelete) {
-        this.id = id;
-        this.name = name;
-        this.area = area;
-        this.cost = cost;
-        this.maxPeople = maxPeople;
-        this.rentType = rentType;
-        this.facilityType = facilityType;
-        this.standardRoom = standardRoom;
-        this.descriptionOtherConvenience = descriptionOtherConvenience;
-        this.poolArea = poolArea;
-        this.numberOfFloors = numberOfFloors;
-        this.facilityFree = facilityFree;
-        this.isDelete = isDelete;
+    public Set<Contract> getContractFacility() {
+        return contractFacility;
+    }
+
+    public void setContractFacility(Set<Contract> contractFacility) {
+        this.contractFacility = contractFacility;
     }
 
     public boolean isDelete() {

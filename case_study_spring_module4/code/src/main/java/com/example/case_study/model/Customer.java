@@ -1,6 +1,7 @@
 package com.example.case_study.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -22,21 +23,18 @@ public class Customer {
     @JoinColumn(name = "customer_type_id", referencedColumnName = "customerTypeId")
     private CustomerType customerType;
 
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+    private Set<Contract> contractCustomer;
+
     public Customer() {
     }
 
-    public Customer(int id, String customerName, String birthday, int gender, String idCard, String phone, String email,
-                    String address, boolean isDelete, CustomerType customerType) {
-        this.id = id;
-        this.customerName = customerName;
-        this.birthday = birthday;
-        this.gender = gender;
-        this.idCard = idCard;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.isDelete = isDelete;
-        this.customerType = customerType;
+    public Set<Contract> getContractCustomer() {
+        return contractCustomer;
+    }
+
+    public void setContractCustomer(Set<Contract> contractCustomer) {
+        this.contractCustomer = contractCustomer;
     }
 
     public boolean isDelete() {

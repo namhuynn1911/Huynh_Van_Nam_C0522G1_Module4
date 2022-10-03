@@ -4,6 +4,8 @@ package com.example.case_study.dto;
 import com.example.case_study.model.FacilityType;
 import com.example.case_study.model.RentType;
 
+import javax.validation.constraints.NotNull;
+
 public class FacilityDto {
     private int id;
     private String name;
@@ -11,35 +13,18 @@ public class FacilityDto {
     private String cost;
     private String maxPeople;
     private RentType rentType;
+    @NotNull
     private FacilityType facilityType;
     private String standardRoom;
     private String descriptionOtherConvenience;
     private String poolArea;
     private String numberOfFloors;
     private String facilityFree;
-    private String contractSet;
+
 
     public FacilityDto() {
     }
 
-    public FacilityDto(int id, String name, String area, String cost,
-                       String maxPeople, RentType rentType, FacilityType facilityType,
-                       String standardRoom, String descriptionOtherConvenience, String poolArea,
-                       String numberOfFloors, String facilityFree, String contractSet) {
-        this.id = id;
-        this.name = name;
-        this.area = area;
-        this.cost = cost;
-        this.maxPeople = maxPeople;
-        this.rentType = rentType;
-        this.facilityType = facilityType;
-        this.standardRoom = standardRoom;
-        this.descriptionOtherConvenience = descriptionOtherConvenience;
-        this.poolArea = poolArea;
-        this.numberOfFloors = numberOfFloors;
-        this.facilityFree = facilityFree;
-
-    }
 
     public int getId() {
         return id;
@@ -131,14 +116,6 @@ public class FacilityDto {
 
     public String getFacilityFree() {
         return facilityFree;
-    }
-
-    public void setFacilityFree(String facilityFree) {
-        this.facilityFree = facilityFree;
-    }
-
-    public String getContractSet() {
-        return contractSet;
     }
 
 }

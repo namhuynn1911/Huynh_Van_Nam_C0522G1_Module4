@@ -9,11 +9,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EmployeeService implements IEmployeeService {
 
     @Autowired
     private IEmployeeRepository iEmployeeRepository;
+
+    @Override
+    public List<Employee> findAll() {
+        return iEmployeeRepository.findAll();
+    }
 
     @Override
     public Page<Employee> findByName(String name, String phone, String idCard, Pageable pageable) {

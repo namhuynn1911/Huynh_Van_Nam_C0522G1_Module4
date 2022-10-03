@@ -57,7 +57,7 @@ public class CustomerController {
             BeanUtils.copyProperties(customerDto, customer);
 
             iCustomerService.save(customer);
-            redirectAttributes.addFlashAttribute("masseNew", "successfully added new !!");
+            redirectAttributes.addFlashAttribute("success", "successfully added new !!");
             return "redirect:/customer";
         }
     }
@@ -71,7 +71,7 @@ public class CustomerController {
     @PostMapping("/update")
     public String update(Customer customer, RedirectAttributes redirectAttributes) {
         iCustomerService.update(customer);
-        redirectAttributes.addFlashAttribute("messa", "edit successfully!");
+        redirectAttributes.addFlashAttribute("success", "edit successfully!");
         return "redirect:/customer";
     }
 

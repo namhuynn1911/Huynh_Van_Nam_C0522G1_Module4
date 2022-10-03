@@ -12,9 +12,9 @@
         <a th:href="@{/employee}">Back to Employee list</a>
     </p>
     <form th:action="@{/employee/save}" th:object="${employeeDto}" method="post">
-        <div>
-            <input type="hidden" th:field="*{id}"/>
-        </div>
+<!--        <div>-->
+<!--            <input type="hidden" th:field="*{id}"/>-->
+<!--        </div>-->
         <div>
             <label>Name</label>
             <input type="text" th:field="*{employeeName}"/>

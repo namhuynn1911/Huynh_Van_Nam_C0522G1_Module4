@@ -18,6 +18,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
+
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {
@@ -40,9 +42,17 @@ public class EmployeeController {
                                      @RequestParam(value = "idCard",defaultValue = "")String idCard,
                                      @PageableDefault(value = 3)Pageable pageable, Model model){
         model.addAttribute("employees",iEmployeeService.findByName(name,phone,idCard,pageable));
+        model.addAttribute("educationDegrees", iEducationDegreeService.findAll());
+        model.addAttribute("positions", iPositionService.findAll());
+        model.addAttribute("divisions",iDivisionService.findAll());
+        model.addAttribute("employeeDto",new EmployeeDto());
         model.addAttribute("name",name);
         model.addAttribute("phone",phone);
         model.addAttribute("idCard",idCard);
+        LocalDate minAge = LocalDate.now().minusYears(80);
+        LocalDate maxAge = LocalDate.now().minusYears(18);
+        model.addAttribute("minAge", minAge);
+        model.addAttribute("maxAge", maxAge);
         return "employee/list";
     }
 
@@ -66,7 +76,7 @@ public class EmployeeController {
             Employee employee = new Employee();
             BeanUtils.copyProperties(employeeDto, employee);
             iEmployeeService.save(employee);
-            redirectAttributes.addFlashAttribute("masseNew", "successfully added new !!");
+            redirectAttributes.addFlashAttribute("success", "successfully added new !!");
             return "redirect:/employee";
         }
     }
@@ -83,7 +93,7 @@ public class EmployeeController {
     @PostMapping("/update")
     public String update(Employee employee, RedirectAttributes redirectAttributes) {
         iEmployeeService.update(employee);
-        redirectAttributes.addFlashAttribute("messa", "edit successfully!");
+        redirectAttributes.addFlashAttribute("success", "edit successfully!");
         return "redirect:/employee";
     }
 
