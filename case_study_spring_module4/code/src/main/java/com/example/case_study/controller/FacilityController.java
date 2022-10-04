@@ -2,12 +2,11 @@ package com.example.case_study.controller;
 
 import com.example.case_study.dto.FacilityDto;
 import com.example.case_study.model.Facility;
-import com.example.case_study.service.IFacilityService;
-import com.example.case_study.service.IFacilityTypeService;
-import com.example.case_study.service.IRentTypeService;
+import com.example.case_study.service.ifacility.IFacilityService;
+import com.example.case_study.service.ifacility.IFacilityTypeService;
+import com.example.case_study.service.ifacility.IRentTypeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -32,7 +31,7 @@ public class FacilityController {
 
     @GetMapping("")
     public String showFacility(@RequestParam(value = "name",defaultValue = "")String name,
-            @PageableDefault(value = 3) Pageable pageable, Model model) {
+            @PageableDefault(value = 5) Pageable pageable, Model model) {
         model.addAttribute("facility",iFacilityService.findByNameAll(name,pageable));
         model.addAttribute("name",name);
         return "facility/list";

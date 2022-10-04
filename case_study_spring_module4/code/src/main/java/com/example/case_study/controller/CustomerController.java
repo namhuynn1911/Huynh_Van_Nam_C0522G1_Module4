@@ -2,8 +2,8 @@ package com.example.case_study.controller;
 
 import com.example.case_study.dto.CustomerDto;
 import com.example.case_study.model.Customer;
-import com.example.case_study.service.ICustomerService;
-import com.example.case_study.service.ICustomerTypeService;
+import com.example.case_study.service.icustomer.ICustomerService;
+import com.example.case_study.service.icustomer.ICustomerTypeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -14,8 +14,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/customer")
@@ -31,7 +29,7 @@ public class CustomerController {
         public String search(@RequestParam(value = "name" , defaultValue = "") String name,
                          @RequestParam(value = "phone" , defaultValue = "") String phone,
                          @RequestParam(value = "address" , defaultValue = "") String address,
-                         @PageableDefault(value = 3) Pageable pageable, Model model) {
+                         @PageableDefault(value = 5) Pageable pageable, Model model) {
         model.addAttribute("customers", iCustomerService.findByName(name,phone,address, pageable));
         model.addAttribute("name", name);
         model.addAttribute("phone", name);

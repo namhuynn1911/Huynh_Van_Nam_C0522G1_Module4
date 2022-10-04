@@ -1,12 +1,11 @@
 package com.example.case_study.controller;
 
 import com.example.case_study.dto.EmployeeDto;
-import com.example.case_study.model.Customer;
 import com.example.case_study.model.Employee;
-import com.example.case_study.service.IDivisionService;
-import com.example.case_study.service.IEducationDegreeService;
-import com.example.case_study.service.IEmployeeService;
-import com.example.case_study.service.IPositionService;
+import com.example.case_study.service.iemployee.IDivisionService;
+import com.example.case_study.service.iemployee.IEducationDegreeService;
+import com.example.case_study.service.iemployee.IEmployeeService;
+import com.example.case_study.service.iemployee.IPositionService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -17,8 +16,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/employee")
@@ -40,7 +37,7 @@ public class EmployeeController {
     public String showEmployeeSearch(@RequestParam(value = "name",defaultValue = "") String name,
                                      @RequestParam(value = "phone",defaultValue = "")String phone,
                                      @RequestParam(value = "idCard",defaultValue = "")String idCard,
-                                     @PageableDefault(value = 3)Pageable pageable, Model model){
+                                     @PageableDefault(value = 5)Pageable pageable, Model model){
         model.addAttribute("employees",iEmployeeService.findByName(name,phone,idCard,pageable));
         model.addAttribute("educationDegrees", iEducationDegreeService.findAll());
         model.addAttribute("positions", iPositionService.findAll());
@@ -49,10 +46,10 @@ public class EmployeeController {
         model.addAttribute("name",name);
         model.addAttribute("phone",phone);
         model.addAttribute("idCard",idCard);
-        LocalDate minAge = LocalDate.now().minusYears(80);
-        LocalDate maxAge = LocalDate.now().minusYears(18);
-        model.addAttribute("minAge", minAge);
-        model.addAttribute("maxAge", maxAge);
+//        LocalDate minAge = LocalDate.now().minusYears(80);
+//        LocalDate maxAge = LocalDate.now().minusYears(18);
+//        model.addAttribute("minAge", minAge);
+//        model.addAttribute("maxAge", maxAge);
         return "employee/list";
     }
 
@@ -64,6 +61,7 @@ public class EmployeeController {
         model.addAttribute("employeeDto", new EmployeeDto());
         return "employee/create";
     }
+
     @PostMapping("/save")
     public String save(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult, RedirectAttributes redirectAttributes,Model model) {
 

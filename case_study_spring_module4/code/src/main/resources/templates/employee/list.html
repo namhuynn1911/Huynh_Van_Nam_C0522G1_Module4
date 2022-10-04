@@ -18,26 +18,26 @@
     <span class="text-light">Add Employee</span>
 </button>
 
-<form class="d-flex" role="search" action="" method="get">
-    <input class="form-control e-2" type="search" placeholder="Search by name" aria-label="Search"
+<form class="d-flex my-2" role="search" action="" method="get" style="float: right">
+    <input style="background-color: #f2f2f2; border: 1px solid olivedrab" class="form-control me-1" type="search" placeholder="Input Search Name" aria-label="Search"
            name="name">
-    <input class="form-control e-2"  type="search" placeholder="Search by phone" aria-label="Search"
+    <input style="background-color: #f2f2f2; border: 1px solid olivedrab" class="form-control me-1" type="search" placeholder="Input Search Phone" aria-label="Search"
            name="phone">
-    <input class="form-control e-2"  type="search" placeholder="Search by Id Card"
-           aria-label="Search" name="idCard">
-    <button class="btn btn-outline-success" type="submit" style="background: chartreuse">Search</button>
+    <input style="background-color: #f2f2f2; border: 1px solid olivedrab" class="form-control me-1" type="search" placeholder="Input Search Id Card" aria-label="Search"
+           name="idCard">
+    <button style="background-color: #45a049" class="btn btn-outline-success" type="submit" name="action" value="search">
+        <i class="fa-solid fa-magnifying-glass text-light"></i></button>
 </form>
+
 
 <h3 th:text="${success}" style="color: red"></h3>
 <table class="table table-bordered" id="furama">
     <thead>
     <tr>
+        <th>#</th>
         <th>Name & View</th>
-        <!--        <th>Birthday</th>-->
         <th>ID Card</th>
         <th>Phone</th>
-        <!--        <th>Phone </th>-->
-        <!--        <th>Email</th>-->
         <th>Education Name</th>
         <th>Position Name</th>
         <th>Division Name</th>
@@ -47,12 +47,10 @@
     </thead>
     <tbody>
     <tr th:each="row,rowStat : ${employees}">
+        <td th:text="${employees.number * employees.size + rowStat.count}"></td>
         <td><a th:href="@{/employee/view/__${row.id}__}" th:text="${row.employeeName}"></a></td>
-        <!--        <td th:text="${row.birthday}"></td>-->
         <td th:text="${row.idCard}"></td>
         <td th:text="${row.phone}"></td>
-        <!--        <td th:text="${row.phone}"></td>-->
-        <!--        <td th:text="${row.email}"></td>-->
         <td th:if="${row.educationDegree}" th:text="${row.educationDegree.educationDegreeName}"></td>
         <td th:unless="${row.educationDegree}"></td>
 
@@ -66,8 +64,8 @@
         <td>
             <button th:attr="onclick=|employeeDelete('${row.id}', '${row.employeeName}')|"
                     class="btn btn-danger btn-outline-secondary btn-sm" data-bs-toggle="modal"
-                    data-bs-target="#deleteCustomer">
-                <i class="fa-solid fa-trash"></i>
+                    data-bs-target="#deleteEmployee">
+                <span class="fa-solid fa-trash-can text-light h6 m-auto px-2"></span>
             </button>
 <!--            <a th:href="@{/employee/delete/__${row.id}__}"><i class="fa-solid fa-trash"></i></a>-->
         </td>
@@ -77,33 +75,48 @@
 </table>
 
 <div>
-    <a th:href="@{'/employee'(page=${employees.number - 1},name=${name})}" th:if="${employees.hasPrevious()}"><i
-            class="fa-sharp fa-solid fa-backward"></i></a>
-    <span th:text="${employees.number + 1}"></span>/<span th:text="${employees.totalPages}"></span>
-    <a th:href="@{'/employee'(page=${employees.number + 1},name=${name})}" th:if="${employees.hasNext()}"><i
-            class="fa-solid fa-forward"></i></a>
+    <ul class="pagination">
+
+        <li class="page-item"><a class="page-link" th:href="@{'/employee'(page=${employees.number - 1},search=${search})}"
+                                 th:if="${employees.hasPrevious()}">Previous</a></li>
+        <li class="page-item"><a class="page-link" th:if="${employees.hasPrevious()}"
+                                 th:href="@{'/employee'(page=${employees.number - 1},search=${search})}"
+                                 th:text="${employees.number }"></a>
+        </li>
+
+        <li class="page-item active">
+            <a class="page-link" th:text="${employees.number + 1}"
+               th:href="@{'/employee'(page=${employees.number},search=${search})}">
+                <span class="sr-only">(trang hiện tại)</span></a>
+        </li>
+
+        <li class="page-item"><a class="page-link" th:if="${employees.hasNext()}"
+                                 th:href="@{'/employee'(page=${employees.number + 1},search=${search})}"
+                                 th:text="${employees.number + 2}"></a>
+        </li>
+        <li class="page-item"><a class="page-link" th:href="@{'/customer'(page=${employees.number + 1},search=${search})}" th:if="${employees.hasNext()}">Next</a></li>
+
+    </ul>
 </div>
 
-<!--<footer th:replace="layout_new :: footer"></footer>-->
-
-<div class="modal fade" id="deleteCustomer" tabindex="-1" aria-labelledby="exampleModalLabel1"
+<div class="modal fade" id="deleteEmployee" tabindex="-1" aria-labelledby="exampleModalLabel1"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel1">Bạn có chắc chắn muốn xóa?</h4>
+                <h4 class="modal-title" id="exampleModalLabel1">Are you sure you want to delete ?</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <form th:action="@{/employee/delete}" method="POST">
                 <div class="modal-body">
-                    <span class="h6">Khách hàng:</span><strong id="nameDelete" class="text-danger ps-2"></strong>
+                    <span class="h6">Employee: </span><strong id="nameDelete" class="text-danger ps-2"></strong>
                     <input type="hidden" name="idDelete" id="idDelete" readonly/>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="submit" class="btn btn-danger" value="delete">Xóa</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger" value="delete">Delete</button>
                 </div>
             </form>
         </div>
@@ -118,7 +131,7 @@
             <form class="border border-2 border-success p-3 rounded formCSS" th:action="@{/employee/save}"
                   th:object="${employeeDto}" method="POST">
                 <div class="modal-header">
-                    <h3 class="modal-title fw-bold" id="exampleModalLabel3">THÊM MỚI NHÂN VIÊN</h3>
+                    <h3 class="modal-title fw-bold" id="exampleModalLabel3">Add Employee</h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
@@ -128,7 +141,7 @@
                         <p style="color: red" th:if="${#fields.hasErrors('employeeName')}"
                            th:errors="*{employeeName}"></p>
                         <div class="input-group">
-                            <input type="text" id="nameAdd" class="form-control" placeholder="Nhập tên nhân viên.."
+                            <input type="text" id="nameAdd" class="form-select" placeholder="Nhập tên nhân viên.."
                                    th:field="*{employeeName}"/>
 <!--                            required-->
 <!--                                   pattern="^([\p{Lu}][\p{Ll}]{1,8})(\s([\p{Lu}]|[\p{Lu}][\p{Ll}]{1,10})){0,5}$"-->
@@ -140,7 +153,7 @@
                         <label for="dateOfBirth" class="h6">Birthday: </label>
                         <p style="color: red" th:if="${#fields.hasErrors('birthday')}"
                            th:errors="*{birthday}"></p>
-                        <input type="date" id="dateOfBirth" class="form-control" th:field="*{birthday}" />
+                        <input type="date" id="dateOfBirth" class="form-select" th:field="*{birthday}" />
 <!--                               th:min="${minAge}" th:max="${maxAge}"-->
 
 
@@ -149,7 +162,7 @@
                     <div class="mt-3 form-group">
                         <label for="idCardAdd" class="h6">Số CMND/CCCD:</label>
                         <div class="input-group">
-                            <input type="text" id="idCardAdd" class="form-control" placeholder="Nhập số CMND/CCCD.."
+                            <input type="text" id="idCardAdd" class="form-select" placeholder="Nhập số CMND/CCCD.."
                                    th:field="*{idCard}" />
 <!--                                   required pattern="^\d{9}|\d{12}$"/>-->
 <!--                                   title="Số CMND/CCCD phải đúng định dạng XXXXXXXXX hoặc XXXXXXXXXXXX (X là số 0-9)."-->
@@ -230,7 +243,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-success" value="delete">Save</button>
                 </div>
             </form>

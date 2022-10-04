@@ -25,30 +25,30 @@
             font-family: Arial, Helvetica;
             border-collapse: collapse;
             width: 100%;
-            background-color: wheat;
+            background-color: #f2f2f2;
             font-size: 20px;
         }
 
         #furama td, #products th {
-            border: 2px solid black;
+            border: 2px solid white;
             padding: 8px;
         }
 
         #furama tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: white;
         }
 
         #furama tr:hover {
-            background-color: #ddd;
+            background-color: wheat;
         }
 
         #furama th {
-            border: 1px solid black;
+            border: 1px solid white;
             padding-top: 12px;
             padding-bottom: 12px;
             text-align: left;
-            background-color: olivedrab;
-            color: white;
+            background-color: cornflowerblue;
+            color: black;
 
         }
 
@@ -135,12 +135,6 @@
             overflow: auto;
         }
 
-        #backGroundBody{
-            background-attachment: fixed;
-            background-size: 100%;
-            background-repeat: no-repeat;
-            background-image: url("https://www.nawpic.com/media/2020/pink-laptop-nawpic-12.jpg");
-        }
 
     </style>
 </head>
@@ -152,10 +146,6 @@
 <nav class="navbar navbar-expand-lg bg-light " th:fragment="head">
     <div class="container-fluid text-center">
         <a class="navbar-brand text-light" th:href="@{/}">HOME</a>
-<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"-->
-<!--                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--            <span class="navbar-toggler-icon"></span>-->
-<!--        </button>-->
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
@@ -168,7 +158,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" th:href="@{/customer/create}">Add new Customer</a></li>
+                        <li><a class="dropdown-item" th:href="@{/customer/create}">Add New Customer</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -181,20 +171,20 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" th:href="@{/employee/create}">Add new Employee</a></li>
+                        <li><a class="dropdown-item" th:href="@{/employee/create}">Add New Employee</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
-                        Facility
+                        Service
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" th:href="@{/facility}">Facility List</a></li>
+                        <li><a class="dropdown-item" th:href="@{/facility}">Service List</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" th:href="@{/facility/create}">Add new Facility</a></li>
+                        <li><a class="dropdown-item" th:href="@{/facility/create}">Add New Service</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -207,7 +197,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" th:href="@{/contract/create}">Add new Contract</a></li>
+                        <li><a class="dropdown-item" th:href="@{/contract/create}">Add New Contract</a></li>
                     </ul>
                 </li>
             </ul>
