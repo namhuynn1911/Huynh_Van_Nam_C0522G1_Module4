@@ -1,6 +1,5 @@
 package com.example.case_study.repository.facility;
 
-import com.example.case_study.model.Customer;
 import com.example.case_study.model.Facility;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +20,10 @@ public interface IFacilityRepository extends JpaRepository<Facility, Integer> {
     //
 //    @Query(value = "select * from facility where is_delete = 0 ", nativeQuery = true)
 //    Page<Facility> findAll(Pageable pageable);
-    @Query(value = "select * from facility where name like %:keyword1% and is_delete=0", nativeQuery = true)
+    @Query(value = "select * " +
+            "from facility " +
+            "where name like %:keyword1% " +
+            "and is_delete=0", nativeQuery = true)
     Page<Facility> searchByName(@Param("keyword1") String name, Pageable pageable);
 
     @Modifying

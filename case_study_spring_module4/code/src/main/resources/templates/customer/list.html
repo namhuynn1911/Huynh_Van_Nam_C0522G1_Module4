@@ -7,7 +7,7 @@
 </head>
 <body id="backGroundBody">
 <div th:replace="layout_new :: head"></div>
-<h1>Customer List</h1>
+<h2>Customer List</h2>
 
 <form class="d-flex my-2" role="search" action="" method="get" style="float: right">
     <input style="background-color: #f2f2f2; border: 1px solid olivedrab" class="form-control me-1" type="search" placeholder="Input Search Name" aria-label="Search"
@@ -16,7 +16,7 @@
            name="phone">
     <input style="background-color: #f2f2f2; border: 1px solid olivedrab" class="form-control me-1" type="search" placeholder="Input Search Address" aria-label="Search"
            name="address">
-    <button style="background-color: #45a049" class="btn btn-outline-success" type="submit" name="action" value="search">
+    <button style="background-color: blue" class="btn btn-outline-success" type="submit" name="action" value="search">
         <i class="fa-solid fa-magnifying-glass text-light"></i></button>
 </form>
 
@@ -62,27 +62,27 @@
     </tbody>
 </table>
 
-<div>
+<div style="margin-left: 46%">
     <ul class="pagination">
 
-        <li class="page-item"><a class="page-link" th:href="@{'/customer'(page=${customers.number - 1},search=${search})}"
+        <li class="page-item"><a class="page-link" th:href="@{'/customer'(page=${customers.number - 1},name=${name},phone=${phone},address=${address})}"
                                  th:if="${customers.hasPrevious()}">Previous</a></li>
         <li class="page-item"><a class="page-link" th:if="${customers.hasPrevious()}"
-                                 th:href="@{'/customer'(page=${customers.number - 1},search=${search})}"
+                                 th:href="@{'/customer'(page=${customers.number - 1},name=${name},phone=${phone},address=${address})}"
                                  th:text="${customers.number }"></a>
         </li>
 
         <li class="page-item active">
             <a class="page-link" th:text="${customers.number + 1}"
-               th:href="@{'/customer'(page=${customers.number},search=${search})}">
+               th:href="@{'/customer'(page=${customers.number},name=${name},phone=${phone},address=${address})}">
                 <span class="sr-only">(trang hiện tại)</span></a>
         </li>
 
         <li class="page-item"><a class="page-link" th:if="${customers.hasNext()}"
-                                 th:href="@{'/customer'(page=${customers.number + 1},search=${search})}"
+                                 th:href="@{'/customer'(page=${customers.number + 1},name=${name},phone=${phone},address=${address})}"
                                  th:text="${customers.number + 2}"></a>
         </li>
-        <li class="page-item"><a class="page-link" th:href="@{'/customer'(page=${customers.number + 1},search=${search})}" th:if="${customers.hasNext()}">Next</a></li>
+        <li class="page-item"><a class="page-link" th:href="@{'/customer'(page=${customers.number + 1},name=${name},phone=${phone},address=${address})}" th:if="${customers.hasNext()}">Next</a></li>
 
     </ul>
 </div>

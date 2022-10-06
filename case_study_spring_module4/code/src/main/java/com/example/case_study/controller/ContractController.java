@@ -39,22 +39,22 @@ public class ContractController {
     private IContractDetailService iContractDetailService;
 
     @GetMapping("")
-    public String showContract(@PageableDefault(value = 5)Pageable pageable, Model model){
-        model.addAttribute("contracts",iContractService.findAllContract(pageable));
-        model.addAttribute("facility",iFacilityService.findAll());
-        model.addAttribute("customers",iCustomerService.findAll());
-        model.addAttribute("employees",iEmployeeService.findAll());
-        model.addAttribute("contractDetails",iContractDetailService.findAll());
-        model.addAttribute("attachFacility",iAttachFacilityService.findAll());
-        model.addAttribute("contract",new Contract());
-        model.addAttribute("contractDetail",new ContractDetail());
+    public String showContract(@PageableDefault(value = 5) Pageable pageable, Model model) {
+        model.addAttribute("contracts", iContractService.findAllContract(pageable));
+        model.addAttribute("facility", iFacilityService.findAll());
+        model.addAttribute("customers", iCustomerService.findAll());
+        model.addAttribute("employees", iEmployeeService.findAll());
+        model.addAttribute("contractDetails", iContractDetailService.findAll());
+        model.addAttribute("attachFacility", iAttachFacilityService.findAll());
+        model.addAttribute("contract", new Contract());
+        model.addAttribute("contractDetail", new ContractDetail());
         return "contract/list";
     }
 
     @PostMapping("/save")
     public String save(@ModelAttribute Contract contract, RedirectAttributes redirectAttributes) {
         iContractService.save(contract);
-        redirectAttributes.addFlashAttribute("message", "successfully added new !!");
+        redirectAttributes.addFlashAttribute("message", "Successfully Added New !!");
 
         return "redirect:/contract";
     }
@@ -62,8 +62,7 @@ public class ContractController {
     @PostMapping("/addContractDetail")
     public String saveDetail(@ModelAttribute ContractDetail contractDetail, RedirectAttributes redirectAttributes) {
         iContractDetailService.save(contractDetail);
-        redirectAttributes.addFlashAttribute("message", "Thêm mới hợp đồng chi tiết thành công!");
-
+        redirectAttributes.addFlashAttribute("message", "Successfully Added New !!");
         return "redirect:/contract";
     }
 

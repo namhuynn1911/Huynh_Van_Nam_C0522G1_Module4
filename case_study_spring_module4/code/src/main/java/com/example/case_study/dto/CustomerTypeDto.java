@@ -14,12 +14,6 @@ public class CustomerTypeDto {
     public CustomerTypeDto() {
     }
 
-    public CustomerTypeDto(int customerTypeId, String customerTypeName, Set<Customer> customers) {
-        this.customerTypeId = customerTypeId;
-        this.customerTypeName = customerTypeName;
-        this.customers = customers;
-    }
-
     public int getCustomerTypeId() {
         return customerTypeId;
     }

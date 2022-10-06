@@ -25,6 +25,8 @@
         <div>
             <label>Birthday</label>
             <input type="date" th:field="*{birthday}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('birthday')}"
+               th:errors="*{birthday}"></p>
         </div>
         <!--        <div>-->
         <!--            <label>Gender</label>-->
@@ -35,18 +37,26 @@
         <div>
             <label>ID Card</label>
             <input type="text" th:field="*{idCard}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('idCard')}"
+               th:errors="*{idCard}"></p>
         </div>
         <div>
             <label>Phone</label>
             <input type="text" th:field="*{phone}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('phone')}"
+               th:errors="*{phone}"></p>
         </div>
         <div>
             <label>Email</label>
             <input type="email" th:field="*{email}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('email')}"
+               th:errors="*{email}"></p>
         </div>
         <div>
             <label>Salary</label>
             <input type="number" th:field="*{salary}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('salary')}"
+               th:errors="*{salary}"></p>
         </div>
         <div>
             <label>EducationDegree Name</label>

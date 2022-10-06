@@ -19,11 +19,6 @@ public class Division {
     public Division() {
     }
 
-    public Division(int divisionId, String divisionName, Set<Employee> division) {
-        this.divisionId = divisionId;
-        this.divisionName = divisionName;
-        this.division = division;
-    }
 
     public int getDivisionId() {
         return divisionId;

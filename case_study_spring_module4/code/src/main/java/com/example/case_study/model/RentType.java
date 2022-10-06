@@ -16,11 +16,6 @@ public class RentType {
     public RentType() {
     }
 
-    public RentType(int id, String name, Set<Facility> facilitySet) {
-        this.id = id;
-        this.name = name;
-        this.facilitySet = facilitySet;
-    }
 
     public int getId() {
         return id;

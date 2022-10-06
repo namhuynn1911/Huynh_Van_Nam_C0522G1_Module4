@@ -1,7 +1,7 @@
 package com.example.case_study.dto;
 
 import com.example.case_study.model.CustomerType;
-import org.springframework.format.annotation.DateTimeFormat;
+
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -14,38 +14,37 @@ public class CustomerDto {
     private int id;
 
     @NotBlank(message = "Trường này không được để trống !!!")
-    @Size(min=5,max = 100,message = "Trường Tên được giới hạn từ 5 - 100 kí tự")
-    @Pattern(regexp = "^([\\p{Lu}][\\p{Ll}]{1,8})(\\s([\\p{Lu}]|[\\p{Lu}][\\p{Ll}]{1,10})){0,5}$",
-            message = "Tên phải đúng định dạng mỗi chữ cái đầu phải viết in hoa")
+    @Pattern(regexp = "^(([\\p{Lu}][\\p{Ll}]{1,8})(\\s([\\p{Lu}]|[\\p{Lu}][\\p{Ll}]{1,10})){0,5})| *$",
+            message = "Tên phải đúng định dạng mỗi chữ cái đầu phải viết in hoa!!!")
     private String customerName;
+
+    @NotBlank(message = "Trường này không được để trống !!!")
+//    @Pattern(regexp = "^((?:(?:31(/|-|.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(/|-|.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|" +
+//            "[2-9]\\d)?\\d{2})$|^(?:29(/|-|.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|" +
+//            "[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(/|-|.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]" +
+//            "\\d)?\\d{2}))| $", message = "Ngày tháng năm sinh không hợp lệ !!!")
     private String birthday;
+
+//    @NotBlank(message = "Trường này không được để trống !!!")
     private int gender;
 
-    @Pattern(regexp = "\\d{10}",message = "CMND phải đúng định dạng 10 số")
+    @NotBlank(message = "Trường này không được để trống !!!")
+    @Pattern(regexp = "^(\\d{10})| *$",message = "CMND phải đúng định dạng 10 số !!!")
     private String idCard;
 
-    @Pattern(regexp = "^((\\(\\+84\\-\\))|0)(90|91)[0-9]{7}$")
+    @NotBlank(message = "Trường này không được để trống !!!")
+    @Pattern(regexp = "^(((\\(\\+84\\-\\))|0)(90|91)[0-9]{7})| *$",message = "Số điện thoại phải đúng định dạng 10 số!!!")
     private String phone;
 
     @Email(message = "Định dạng Email sai, hãy nhập đúng Email !!!")
+    @NotBlank(message = "Trường này không được để trống !!!")
     private String email;
+
+    @NotBlank(message = "Trường này không được để trống!!!")
     private String address;
     private CustomerType customerType;
 
     public CustomerDto() {
-    }
-
-    public CustomerDto(int id, String customerName, String birthday, int gender, String idCard, String phone,
-                       String email, String address, CustomerType customerType) {
-        this.id = id;
-        this.customerName = customerName;
-        this.birthday = birthday;
-        this.gender = gender;
-        this.idCard = idCard;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.customerType = customerType;
     }
 
     public int getId() {

@@ -19,11 +19,6 @@ public class Position {
     public Position() {
     }
 
-    public Position(int positionId, String positionName, Set<Employee> employeePosition) {
-        this.positionId = positionId;
-        this.positionName = positionName;
-        this.employeePosition = employeePosition;
-    }
 
     public int getPositionId() {
         return positionId;

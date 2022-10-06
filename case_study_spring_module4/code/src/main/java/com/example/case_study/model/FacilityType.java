@@ -17,12 +17,6 @@ public class FacilityType {
     public FacilityType() {
     }
 
-    public FacilityType(int id, String name, Set<Facility> facilitySet) {
-        this.id = id;
-        this.name = name;
-        this.facilitySet = facilitySet;
-    }
-
     public int getId() {
         return id;
     }

@@ -24,6 +24,8 @@
         <div>
             <label>Birthday</label>
             <input type="date" th:field="*{birthday}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('birthday')}"
+               th:errors="*{birthday}"></p>
         </div>
 <!--        <div>-->
 <!--            <label>Gender</label>-->
@@ -52,7 +54,10 @@
         <div>
             <label>Salary</label>
             <input type="number" th:field="*{salary}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('salary')}"
+               th:errors="*{salary}"></p>
         </div>
+
         <div>
             <label>Education Name: </label>
             <select th:field="*{educationDegree}">

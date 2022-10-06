@@ -4,36 +4,43 @@ import com.example.case_study.model.Division;
 import com.example.case_study.model.EducationDegree;
 import com.example.case_study.model.Position;
 
+import javax.validation.constraints.*;
 
 
 public class EmployeeDto {
     private int id;
+
+    @NotBlank(message = "Trường này không được để trống !!!")
+//    @Size(min=5,max = 100,message = "Trường Tên được giới hạn từ 5 - 100 kí tự")
+    @Pattern(regexp = "^(([\\p{Lu}][\\p{Ll}]{1,8})(\\s([\\p{Lu}]|[\\p{Lu}][\\p{Ll}]{1,10})){0,5})| *$",
+            message = "Tên phải đúng định dạng mỗi chữ cái đầu phải viết in hoa")
     private String employeeName;
+
+    @NotBlank(message = "Trường này không được để trống !!!")
     private String birthday;
+
+
+    @NotBlank(message = "Trường này không được để trống !!!")
+    @Pattern(regexp = "^(\\d{10})| *$",message = "CMND phải đúng định dạng 10 số")
     private String idCard;
+
+    @NotBlank(message = "Trường này không được để trống !!!")
+    @Pattern(regexp = "^(((\\(\\+84\\-\\))|0)(90|91)[0-9]{7})| *$",message = "Số điện thoại phải đúng định dạng 10 số!!")
     private String phone;
+
+    @Email(message = "Định dạng Email sai, hãy nhập đúng Email !!!")
+    @NotBlank(message = "Trường này không được để trống !!!")
     private String email;
+
+    @Min(value = 4500000,message = "Số lương tối thiểu là 4500000 ngàn")
     private double salary;
+
     private EducationDegree educationDegree;
     private Position position;
     private Division division;
     public EmployeeDto() {
     }
 
-
-    public EmployeeDto(int id, String employeeName, String birthday, String idCard, String phone, String email,
-                       double salary, EducationDegree educationDegree, Position position, Division division) {
-        this.id = id;
-        this.employeeName = employeeName;
-        this.birthday = birthday;
-        this.idCard = idCard;
-        this.phone = phone;
-        this.email = email;
-        this.salary = salary;
-        this.educationDegree = educationDegree;
-        this.position = position;
-        this.division = division;
-    }
 
     public Division getDivision() {
         return division;

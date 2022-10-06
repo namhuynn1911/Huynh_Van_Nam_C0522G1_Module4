@@ -34,65 +34,77 @@ public class EmployeeController {
     private IDivisionService iDivisionService;
 
     @GetMapping("")
-    public String showEmployeeSearch(@RequestParam(value = "name",defaultValue = "") String name,
-                                     @RequestParam(value = "phone",defaultValue = "")String phone,
-                                     @RequestParam(value = "idCard",defaultValue = "")String idCard,
-                                     @PageableDefault(value = 5)Pageable pageable, Model model){
-        model.addAttribute("employees",iEmployeeService.findByName(name,phone,idCard,pageable));
+    public String showEmployeeSearch(@RequestParam(value = "name", defaultValue = "") String name,
+                                     @RequestParam(value = "phone", defaultValue = "") String phone,
+                                     @RequestParam(value = "idCard", defaultValue = "") String idCard,
+                                     @PageableDefault(value = 5) Pageable pageable, Model model) {
+        model.addAttribute("employees", iEmployeeService.findByName(name, phone, idCard, pageable));
         model.addAttribute("educationDegrees", iEducationDegreeService.findAll());
         model.addAttribute("positions", iPositionService.findAll());
-        model.addAttribute("divisions",iDivisionService.findAll());
-        model.addAttribute("employeeDto",new EmployeeDto());
-        model.addAttribute("name",name);
-        model.addAttribute("phone",phone);
-        model.addAttribute("idCard",idCard);
-//        LocalDate minAge = LocalDate.now().minusYears(80);
-//        LocalDate maxAge = LocalDate.now().minusYears(18);
-//        model.addAttribute("minAge", minAge);
-//        model.addAttribute("maxAge", maxAge);
+        model.addAttribute("divisions", iDivisionService.findAll());
+        model.addAttribute("employeeDto", new EmployeeDto());
+        model.addAttribute("name", name);
+        model.addAttribute("phone", phone);
+        model.addAttribute("idCard", idCard);
         return "employee/list";
     }
+
 
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("educationDegrees", iEducationDegreeService.findAll());
         model.addAttribute("positions", iPositionService.findAll());
-        model.addAttribute("divisions",iDivisionService.findAll());
+        model.addAttribute("divisions", iDivisionService.findAll());
         model.addAttribute("employeeDto", new EmployeeDto());
         return "employee/create";
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult, RedirectAttributes redirectAttributes,Model model) {
+    public String save(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult,
+                       RedirectAttributes redirectAttributes, Model model) {
 
-        if (bindingResult.hasFieldErrors()) {
-            model.addAttribute("educationDegrees", iEducationDegreeService.findAll());
-            model.addAttribute("positions", iPositionService.findAll());
-            model.addAttribute("divisions", iDivisionService.findAll());
-            return "employee/create";
-        } else {
+//        if (bindingResult.hasFieldErrors()) {
+//            model.addAttribute("educationDegrees", iEducationDegreeService.findAll());
+//            model.addAttribute("positions", iPositionService.findAll());
+//            model.addAttribute("divisions", iDivisionService.findAll());
+//            return "employee/create";
+//        } else {
             Employee employee = new Employee();
             BeanUtils.copyProperties(employeeDto, employee);
             iEmployeeService.save(employee);
-            redirectAttributes.addFlashAttribute("success", "successfully added new !!");
+            redirectAttributes.addFlashAttribute("success", "Successfully Added New !!");
             return "redirect:/employee";
         }
-    }
+
 
     @GetMapping("/update/{id}")
     public String edit(@PathVariable int id, Model model) {
-        model.addAttribute("employees", iEmployeeService.findById(id));
+        Employee employee = iEmployeeService.findById(id);
         model.addAttribute("educationDegrees", iEducationDegreeService.findAll());
         model.addAttribute("positions", iPositionService.findAll());
         model.addAttribute("divisions", iDivisionService.findAll());
+        EmployeeDto employeeDto = new EmployeeDto();
+        BeanUtils.copyProperties(employee, employeeDto);
+        model.addAttribute("employees", employeeDto);
+
         return "employee/update";
     }
 
     @PostMapping("/update")
-    public String update(Employee employee, RedirectAttributes redirectAttributes) {
-        iEmployeeService.update(employee);
-        redirectAttributes.addFlashAttribute("success", "edit successfully!");
-        return "redirect:/employee";
+    public String update(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult result,
+                         RedirectAttributes redirectAttributes, Model model) {
+        if (result.hasFieldErrors()) {
+            model.addAttribute("educationDegrees", iEducationDegreeService.findAll());
+            model.addAttribute("positions", iPositionService.findAll());
+            model.addAttribute("divisions", iDivisionService.findAll());
+            return "employee/update";
+        } else {
+            Employee employee = new Employee();
+            BeanUtils.copyProperties(employeeDto, employee);
+            iEmployeeService.save(employee);
+            redirectAttributes.addFlashAttribute("success", "Edit Successfully!!");
+            return "redirect:/employee";
+        }
     }
 
 //    @GetMapping("/delete/{id}")
@@ -103,11 +115,15 @@ public class EmployeeController {
 //        model.addAttribute("divisions",iDivisionService.findAll());
 //        return "employee/delete";
 //    }
+        //        LocalDate minAge = LocalDate.now().minusYears(80);
+//        LocalDate maxAge = LocalDate.now().minusYears(18);
+//        model.addAttribute("minAge", minAge);
+//        model.addAttribute("maxAge", maxAge);
 
-    @PostMapping("/delete")
-    public String delete(@RequestParam(value = "idDelete")int id, RedirectAttributes redirect) {
-        iEmployeeService.remove(id);
-        redirect.addFlashAttribute("success", "Removed Employee successfully!");
-        return "redirect:/employee";
+        @PostMapping("/delete")
+        public String delete ( @RequestParam(value = "idDelete") int id, RedirectAttributes redirect){
+            iEmployeeService.remove(id);
+            redirect.addFlashAttribute("success", "Removed Employee Successfully!");
+            return "redirect:/employee";
+        }
     }
-}

@@ -19,7 +19,7 @@
         <div>
             <label>Facility Name</label>
             <select id="createFacility" th:field="*{facilityType}">
-                <option th:value="${''}">Facility Type</option>
+                <option value="">Facility Type</option>
                 <option th:each="item: ${facilityTypes}" th:text="${item.name}"
                         th:value="${item.id}"></option>
             </select>
@@ -48,7 +48,7 @@
         </div>
         <div>Rent Name: </label>
             <select th:field="*{rentType}">
-                <option th:value="${''}">Rent Type</option>
+                <option value="">Rent Type</option>
                 <option th:each="rent: ${rentTypes}" th:text="${rent.name}"
                         th:value="${rent.id}"></option>
             </select>
