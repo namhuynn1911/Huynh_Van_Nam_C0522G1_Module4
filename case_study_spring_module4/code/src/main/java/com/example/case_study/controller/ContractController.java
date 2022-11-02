@@ -42,7 +42,7 @@ public class ContractController {
     public String showContract(@PageableDefault(value = 5) Pageable pageable, Model model) {
         model.addAttribute("contracts", iContractService.findAllContract(pageable));
         model.addAttribute("facility", iFacilityService.findAll());
-        model.addAttribute("customers", iCustomerService.findAll());
+        model.addAttribute("customers", iCustomerService.findAll(pageable));
         model.addAttribute("employees", iEmployeeService.findAll());
         model.addAttribute("contractDetails", iContractDetailService.findAll());
         model.addAttribute("attachFacility", iAttachFacilityService.findAll());

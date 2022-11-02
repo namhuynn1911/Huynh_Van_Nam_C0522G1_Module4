@@ -1,5 +1,8 @@
 package com.example.case_study.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -23,19 +26,19 @@ public class Customer {
     @JoinColumn(name = "customer_type_id", referencedColumnName = "customerTypeId")
     private CustomerType customerType;
 
-    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
-    private Set<Contract> contractCustomer;
+//    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+//    private Set<Contract> contractCustomer;
 
     public Customer() {
     }
 
-    public Set<Contract> getContractCustomer() {
-        return contractCustomer;
-    }
-
-    public void setContractCustomer(Set<Contract> contractCustomer) {
-        this.contractCustomer = contractCustomer;
-    }
+//    public Set<Contract> getContractCustomer() {
+//        return contractCustomer;
+//    }
+//
+//    public void setContractCustomer(Set<Contract> contractCustomer) {
+//        this.contractCustomer = contractCustomer;
+//    }
 
     public boolean isDelete() {
         return isDelete;

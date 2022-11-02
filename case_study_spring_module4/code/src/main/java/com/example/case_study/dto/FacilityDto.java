@@ -4,27 +4,55 @@ package com.example.case_study.dto;
 import com.example.case_study.model.FacilityType;
 import com.example.case_study.model.RentType;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 public class FacilityDto {
     private int id;
+
+    @NotBlank(message = "Trường này không được để trống !!!")
+    @Pattern(regexp = "^(([\\p{Lu}][\\p{Ll}]{1,8})(\\s([\\p{Lu}]|[\\p{Lu}][\\p{Ll}]{1,10})){0,5})| *$",
+            message = "Tên phải đúng định dạng mỗi chữ cái đầu phải viết in hoa!!!")
     private String name;
+
+    @NotBlank(message = "Trường này không được để trống !!!")
     private String area;
+
+    @NotBlank(message = "Trường này không được để trống !!!")
     private String cost;
+
+    @NotBlank(message = "Trường này không được để trống !!!")
     private String maxPeople;
+
+    @NotNull(message = "Trường này không được để trống")
     private RentType rentType;
-    @NotNull
+
+   @NotNull(message = "Trường này không được để trống")
     private FacilityType facilityType;
+
+    @NotBlank(message = "Trường này không được để trống !!!")
     private String standardRoom;
+
+    @NotBlank(message = "Trường này không được để trống !!!")
     private String descriptionOtherConvenience;
+
+    @NotBlank(message = "Trường này không được để trống !!!")
     private String poolArea;
+
+    @NotBlank(message = "Trường này không được để trống !!!")
     private String numberOfFloors;
+
+    @NotBlank(message = "Trường này không được để trống !!!")
     private String facilityFree;
 
 
     public FacilityDto() {
     }
 
+    public void setFacilityFree(String facilityFree) {
+        this.facilityFree = facilityFree;
+    }
 
     public int getId() {
         return id;

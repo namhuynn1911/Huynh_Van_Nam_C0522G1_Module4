@@ -13,9 +13,6 @@
         <a th:href="@{/facility}">Back to Employee list</a>
     </p>
     <form th:action="@{/facility/save}" th:object="${facilityDto}" method="post">
-        <!--        <div>-->
-        <!--            <input type="hidden" th:field="*{id}"/>-->
-        <!--        </div>-->
         <div>
             <label>Facility Name</label>
             <select id="createFacility" th:field="*{facilityType}">
@@ -33,6 +30,8 @@
         <div>
             <label>Area</label>
             <input type="text" th:field="*{area}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('area')}"
+               th:errors="*{area}"></p>
         </div>
         <div>
             <label>Cost</label>
@@ -63,18 +62,26 @@
         <div id="poolArea">
             <label>Pool Area</label>
             <input type="text" th:field="*{poolArea}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('poolArea')}"
+               th:errors="*{poolArea}"></p>
         </div>
         <div id="description">
             <label>Description</label>
             <input type="text" th:field="*{descriptionOtherConvenience}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('descriptionOtherConvenience')}"
+               th:errors="*{descriptionOtherConvenience}"></p>
         </div>
         <div id="numberOfFloor">
             <label>Number Of Floor</label>
             <input type="text" th:field="*{numberOfFloors}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('numberOfFloors')}"
+               th:errors="*{numberOfFloors}"></p>
         </div>
         <div id="facilityFree">
             <label>Facility Free</label>
             <input type="text" th:field="*{facilityFree}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('facilityFree')}"
+               th:errors="*{facilityFree}"></p>
         </div>
         <input type="submit" value="Save"/>
     </form>

@@ -18,6 +18,7 @@
             <p style="color: red" th:if="${#fields.hasErrors('customerName')}"
                th:errors="*{customerName}"></p>
         </div>
+
         <div>
             <label><b>Birthday</b>Birthday</label>
             <input type="date" th:field="*{birthday}"/>
@@ -37,34 +38,39 @@
                 <label class="d-block"style="color: black">
                     <input type="radio" th:field="*{gender}" value="2"/>LGBT
                 </label>
-                <label style="color: red" th:errors="*{gender}"
-                   th:if="${#fields.hasErrors('gender')}"></label>
+                <p style="color: red" th:errors="*{gender}"
+                   th:if="${#fields.hasErrors('gender')}"></p>
             </div>
         </div>
+
         <div>
             <label><b>ID Card</b></label>
             <input type="text" th:field="*{idCard}"/>
             <p style="color: red" th:if="${#fields.hasErrors('idCard')}"
                th:errors="*{idCard}"></p>
         </div>
+
         <div>
             <label><b>Phone</b></label>
             <input type="text" th:field="*{phone}"/>
             <p style="color: red" th:if="${#fields.hasErrors('phone')}"
                th:errors="*{phone}"></p>
         </div>
+
         <div>
             <label><b>Email</b></label>
             <input type="email" th:field="*{email}"/>
             <p style="color: red" th:if="${#fields.hasErrors('email')}"
                th:errors="*{email}"></p>
         </div>
+
         <div>
             <label><b>Address</b></label>
             <input type="text" th:field="*{address}"/>
             <p style="color: red" th:if="${#fields.hasErrors('address')}"
                th:errors="*{address}"></p>
         </div>
+
         <div>
             <label><b>Customer Type Name</b></label>
             <select th:field="*{customerType}">

@@ -11,7 +11,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
 
-    Customer findById(int id);
 
     @Modifying
     @Query(value = "update customer set is_delete= 1 where id = :keywordId", nativeQuery = true)
@@ -26,4 +25,9 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
     Page<Customer> searchByName(@Param("keywordName") String name,
                                 @Param("keywordPhone") String phone,
                                 @Param("keywordAddress") String address, Pageable pageable);
+
+    @Query(value = "select * from customer where customer_name like %:search% and is_delete = 0", nativeQuery = true)
+    Page<Customer> apiSearch(@Param("search") String search, Pageable pageable);
 }
+
+

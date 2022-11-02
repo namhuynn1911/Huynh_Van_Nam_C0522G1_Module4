@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Danh Sách Sản Phẩm Cá Nhân</h2>
+
+<div class="container-fluid">
+    <a th:href="@{/sanpham/them}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+            <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+        </svg>
+         Thêm Mới
+    </a>
+</div>
+
+<form class="d-flex my-2" role="search" action="" method="get" style="float: right">
+    <input style="background-color: #f2f2f2; border: 1px solid olivedrab" class="form-control me-1" type="search" placeholder="Input Search Name" aria-label="Search"
+           name="tenSanPham">
+    <button style="background-color: blue" class="btn btn-outline-success" type="submit" name="action" value="search">
+        <i class="fa-solid fa-magnifying-glass text-light"></i></button>
+</form>
+<h3 th:text="${success}" style="color: red"></h3>
+<table class="table table-bordered" id="blogs">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Tên Sản Phẩm</th>
+        <th>Trạng Thái Sản Phẩm</th>
+        <th>Nhà Sản xuất</th>
+        <th>Cấp Độ</th>
+        <th>Chỉnh Sửa</th>
+        <th>Xóa</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="row,rowStat : ${sanPham}">
+        <td th:text="${sanPham.number * sanPham.size + rowStat.count}"></td>
+        <td><a th:href="@{/sanpham/xem/__${row.id}__}" th:text="${row.tenSanPham}"></a></td>
+        <td th:text="${row.trangThai}"></td>
+
+        <td th:if="${row.nhaSanXuat}" th:text="${row.nhaSanXuat.tenNhaSanXuat}"></td>
+        <td th:unless="${row.nhaSanXuat}"></td>
+        <td th:if="${row.capBatSanPham}" th:text="${row.capBatSanPham.tenCapBat}"></td>
+        <td th:unless="${row.capBatSanPham}"></td>
+
+        <td><a th:href="@{/sanpham/sua/__${row.id}__}"><i class="fa-solid fa-pen-to-square"></i></a></td>
+        <td>
+            <button th:attr="onclick=|sanphamXoa('${row.id}', '${row.tenSanPham}')|"
+                    class="btn btn-danger btn-outline-secondary btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#deleteCustomer" >
+                <span class="fa-solid fa-trash-can text-light h6 m-auto px-2"></span>
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div style="margin-left: 46%">
+    <ul class="pagination">
+
+        <li class="page-item"><a class="page-link" th:href="@{'/sanpham'(page=${sanPham.number - 1},name=${tenSanPham})}"
+                                 th:if="${sanPham.hasPrevious()}">Previous</a></li>
+        <li class="page-item"><a class="page-link" th:if="${sanPham.hasPrevious()}"
+                                 th:href="@{'/sanpham'(page=${sanPham.number - 1},name=${tenSanPham})}"
+                                 th:text="${sanPham.number }"></a>
+        </li>
+
+        <li class="page-item active">
+            <a class="page-link" th:text="${sanPham.number + 1}"
+               th:href="@{'/sanpham'(page=${sanPham.number},name=${tenSanPham})}">
+                <span class="sr-only">(trang hiện tại)</span></a>
+        </li>
+
+        <li class="page-item"><a class="page-link" th:if="${sanPham.hasNext()}"
+                                 th:href="@{'/sanpham'(page=${sanPham.number + 1},name=${tenSanPham})}"
+                                 th:text="${sanPham.number + 2}"></a>
+        </li>
+        <li class="page-item"><a class="page-link" th:href="@{'/sanpham'(page=${sanPham.number + 1},name=${tenSanPham})}"
+                                 th:if="${sanPham.hasNext()}">Next</a></li>
+
+    </ul>
+</div>
+
+<div class="modal fade" id="deleteCustomer" tabindex="-1" aria-labelledby="exampleModalLabel1"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel1">Bạn Có Chắc Xóa Sản Phẩm Này Không ?</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form th:action="@{/sanpham/xoa}" method="GET">
+                <div class="modal-body">
+                    <span class="h6">Sản Phẩm: </span><strong id="nameDelete" class="text-danger ps-2"></strong>
+                    <input type="hidden" name="idDelete" id="idDelete" readonly/>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger" value="delete">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function sanphamXoa(id, name) {
+        document.getElementById("idDelete").value = id;
+        document.getElementById("nameDelete").innerText = name;
+        debugger
+    }
+</script>
+</body>
+</html>

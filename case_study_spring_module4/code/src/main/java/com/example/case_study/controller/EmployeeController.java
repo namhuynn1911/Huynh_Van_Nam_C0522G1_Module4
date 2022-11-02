@@ -63,17 +63,18 @@ public class EmployeeController {
     public String save(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult,
                        RedirectAttributes redirectAttributes, Model model) {
 
-//        if (bindingResult.hasFieldErrors()) {
-//            model.addAttribute("educationDegrees", iEducationDegreeService.findAll());
-//            model.addAttribute("positions", iPositionService.findAll());
-//            model.addAttribute("divisions", iDivisionService.findAll());
-//            return "employee/create";
-//        } else {
+        if (bindingResult.hasFieldErrors()) {
+            model.addAttribute("educationDegrees", iEducationDegreeService.findAll());
+            model.addAttribute("positions", iPositionService.findAll());
+            model.addAttribute("divisions", iDivisionService.findAll());
+            return "employee/create";
+        } else {
             Employee employee = new Employee();
             BeanUtils.copyProperties(employeeDto, employee);
             iEmployeeService.save(employee);
             redirectAttributes.addFlashAttribute("success", "Successfully Added New !!");
             return "redirect:/employee";
+        }
         }
 
 

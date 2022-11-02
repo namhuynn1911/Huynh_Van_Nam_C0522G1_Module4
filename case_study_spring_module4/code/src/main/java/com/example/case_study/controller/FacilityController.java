@@ -30,10 +30,10 @@ public class FacilityController {
     private IRentTypeService iRentTypeService;
 
     @GetMapping("")
-    public String showFacility(@RequestParam(value = "name",defaultValue = "")String name,
-            @PageableDefault(value = 5) Pageable pageable, Model model) {
-        model.addAttribute("facility",iFacilityService.findByNameAll(name,pageable));
-        model.addAttribute("name",name);
+    public String showFacility(@RequestParam(value = "name", defaultValue = "") String name,
+                               @PageableDefault(value = 5) Pageable pageable, Model model) {
+        model.addAttribute("facility", iFacilityService.findByNameAll(name, pageable));
+        model.addAttribute("name", name);
         return "facility/list";
     }
 
@@ -53,16 +53,50 @@ public class FacilityController {
             model.addAttribute("facilityTypes", iFacilityTypeService.findAll());
             model.addAttribute("rentTypes", iRentTypeService.findAll());
             return "facility/create";
-        } else {
-            Facility facility = new Facility();
-            BeanUtils.copyProperties(facilityDto, facility);
+        } else if (facilityDto.getFacilityType().getId() == 2) {
+            if (bindingResult.hasFieldErrors("facilityType")
+                    || bindingResult.hasFieldErrors("name")
+                    || bindingResult.hasFieldErrors("area")
+                    || bindingResult.hasFieldErrors("cost")
+                    || bindingResult.hasFieldErrors("maxPeople")
+                    || bindingResult.hasFieldErrors("descriptionOtherConvenience")
+                    || bindingResult.hasFieldErrors("rentType")) {
+                model.addAttribute("facilityTypes",
+                        this.iFacilityTypeService.findAll());
 
-            iFacilityService.save(facility);
-            redirectAttributes.addFlashAttribute("success", "Successfully Added New !!");
-            return "redirect:/facility";
+                model.addAttribute("rentTypes",
+                        this.iRentTypeService.findAll());
+
+                return "facility/create";
+            }
+        } else if (facilityDto.getFacilityType().getId() == 3) {
+            if (bindingResult.hasFieldErrors("facilityType")
+                    || bindingResult.hasFieldErrors("name")
+                    || bindingResult.hasFieldErrors("area")
+                    || bindingResult.hasFieldErrors("cost")
+                    || bindingResult.hasFieldErrors("maxPeople")
+                    || bindingResult.hasFieldErrors("descriptionOtherConvenience")
+                    || bindingResult.hasFieldErrors("rentType")
+                    || bindingResult.hasFieldErrors("poolArea")
+                    || bindingResult.hasFieldErrors("standardRoom")) {
+                model.addAttribute("facilityTypes",
+                        this.iFacilityTypeService.findAll());
+
+                model.addAttribute("rentTypes",
+                        this.iRentTypeService.findAll());
+
+                return "facility/create";
+            }
+
         }
+        Facility facility = new Facility();
+        BeanUtils.copyProperties(facilityDto, facility);
 
+        iFacilityService.save(facility);
+        redirectAttributes.addFlashAttribute("success", "Successfully Added New !!");
+        return "redirect:/facility";
     }
+
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable int id, Model model) {

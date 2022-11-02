@@ -15,6 +15,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
@@ -63,7 +65,7 @@ public class CustomerController {
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable int id, Model model) {
-        Customer customer=iCustomerService.findById(id);
+       Optional <Customer> customer=iCustomerService.findById(id);
         CustomerDto customerDto = new CustomerDto();
         BeanUtils.copyProperties(customer,customerDto);
         model.addAttribute("customerDto",customerDto);
@@ -106,4 +108,6 @@ public class CustomerController {
         model.addAttribute("customers", iCustomerService.findById(id));
         return "customer/view";
     }
+
+
 }

@@ -1,5 +1,6 @@
 package com.example.case_study.model;
 
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -14,7 +15,7 @@ public class Contract {
     private String deposit;
     private double isDelete;
 
-    @ManyToOne
+    @   ManyToOne
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
     private Employee employee;
 
